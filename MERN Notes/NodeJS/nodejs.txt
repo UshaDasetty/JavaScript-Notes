@@ -6,17 +6,29 @@ What are Modules in NodeJs?
 Types of Modules in NodeJS?
 Why NodeJs is preferred over other backend technologies like Java and Php?
 Which Database is the most popularly used with NodeJS?
-Mention a couple of popular libraries used in NOdeJs ? *
+Mention a couple of popular libraries used in NOdeJs ? 
 What are the Pros and Cons of the NodeJS?
-What is Event-Driven Programming? *
-What is an Event Loop? *
-What is Event Emitter in NodeJS? *
-NodeJS Architecture? *
-What are types of API functions in NodeJS? *
+What is Event-Driven Programming? 
+What is an Event Loop? 
+What is Event Emitter in NodeJS? 
+NodeJS Architecture? 
+What are types of API functions in NodeJS? 
 What is package.json file?
-How to create simple ExpressJS applications? *
+How to create simple ExpressJS applications? 
 What are Streams in NodeJs?
-What is the purpose of module.exports?
+What is the purpose of module.exports? 
+What is REPL in NodeJs? 
+What is Control Flow Functions in Node?
+What is the use of Buffer class in NodeJS? 
+What is Piping in NodeJs? 
+What is Reactor Pattern in NodeJs? 
+Describe the Exit codes in NodeJs? 
+Explain the Concepts of middleware in NodeJs? 
+What are the types of HTTP requests? 
+What is the Use of the NODE_ENV variable?
+How do we Handle Errors in NodeJs?
+What is the Difference between http and https?
+What are the Various Timing Featues in NodeJs?
 ************************************************************************************************
 
 NodeJs:-
@@ -151,5 +163,57 @@ How do you install, update and delete dependencies?
 
 -----------------------------------------------------------------------------------------------
 What is the purpose of module.exports?
+
+-----------------------------------------------------------------------------------------------
+What is REPL in NodeJs?
+
+-----------------------------------------------------------------------------------------------
+What is Control Flow Functions in Node?
+
+-> Control Flow Functions is a piece of code which runs in between the several Asynchronous functions calls.
+-> The Control Flow does the following jobs:
+    1) Control the order of Executions 
+    2) Collect the data 
+    3) Limit the concurrency.
+    4) Call the next step in a program.
+
+-----------------------------------------------------------------------------------------------
+What is the use of Buffer class in NodeJS?
+
+-----------------------------------------------------------------------------------------------
+What is Piping in NodeJs?
+
+-> Piping is a mechanism to connect output of one stream to another stream.
+-> It is normally used to get output of one stream and pass it to another stream.
+
+-----------------------------------------------------------------------------------------------
+What is Reactor Pattern in NodeJs?
+
+-----------------------------------------------------------------------------------------------
+Describe the Exit codes in NodeJs?
+
+-----------------------------------------------------------------------------------------------
+Explain the Concepts of middleware in NodeJs?
+
+-----------------------------------------------------------------------------------------------
+What are the types of HTTP requests?
+
+-----------------------------------------------------------------------------------------------
+What is the Use of the NODE_ENV variable?
+
+-----------------------------------------------------------------------------------------------
+How do we Handle Errors in NodeJs?
+
+-----------------------------------------------------------------------------------------------
+What is the Difference between http and https
+
+-----------------------------------------------------------------------------------------------
+What are the Various Timing Featues in NodeJs?
+
+-> Timers module is provided by NodeJs, which contains various functions for executing the code after a specified period of time.
+-> Various functions that are provided by this module are:
+    1) setTimeout/clearTimeout - Used to schedule code execution, after a specified period of time.
+    2) setInterval/clearInterval - Used to execute block of code multiple times.
+    3) setImmediate/clearImmediate - Used to execute code at the end of the current event loop cycle.
 
 -----------------------------------------------------------------------------------------------
