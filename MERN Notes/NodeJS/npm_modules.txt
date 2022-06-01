@@ -1,0 +1,6 @@
+1) bcrypt: to encrypt the password in the database.
+2) jsonwebtoken: 
+3) validator: to validate the email field.
+4) nodemailer: to 
+5) cokie-parser: 
+6) body-parser: 

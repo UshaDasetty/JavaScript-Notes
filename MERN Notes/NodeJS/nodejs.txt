@@ -1,0 +1,155 @@
+What is NodeJS? 
+How NodeJS works?
+Where can we use NodeJS? 
+What is NPM?
+What are Modules in NodeJs?
+Types of Modules in NodeJS?
+Why NodeJs is preferred over other backend technologies like Java and Php?
+Which Database is the most popularly used with NodeJS?
+Mention a couple of popular libraries used in NOdeJs ? *
+What are the Pros and Cons of the NodeJS?
+What is Event-Driven Programming? *
+What is an Event Loop? *
+What is Event Emitter in NodeJS? *
+NodeJS Architecture? *
+What are types of API functions in NodeJS? *
+What is package.json file?
+How to create simple ExpressJS applications? *
+What are Streams in NodeJs?
+What is the purpose of module.exports?
+************************************************************************************************
+
+NodeJs:-
+-> NodeJs is an Open-Source, Cross-platform, JavaScript Runtime Environment and library for running web applications in the Server Side.
+-> NodeJs is petfect for data-intesive applications as it uses an Asynchronous and Event-driven model.
+
+-------------------------------------------------------------------------------------------------
+How NodeJs Work:-
+
+-------------------------------------------------------------------------------------------------
+Where can we use NodeJS?
+
+-> Web applications
+-> Distributed System
+-> Network applications
+
+-------------------------------------------------------------------------------------------------
+What is NPM?
+
+-> NPM stands for Node Package Manager.
+-> It is responsible for managing all the packages and modules for NodeJS.
+-> NPM provides two main functionalities:
+        1. It provides online repository for nodejs core-modules/in-build modules which are seachable on https://nodejs.org/dist/latest-v18.x/docs/api/
+        2. It also provides command line utility to install NodeJs packages, does version management and dependency management of NodeJs.
+                https://www.npmjs.com/
+
+-----------------------------------------------------------------------------------------------
+What are Modules in NodeJs?
+
+-> Modules are like JavaScript Libraries and a piece of Code that can be used in NodeJs applications to include set of functions.
+-> To include module in a NodeJS application, we use require() function with the paranthesis containing the name of the module.
+
+Eg:- Creating a web server
+
+var http = require('http');   // includes module 
+var server = http.createServer(function (req, res) {
+    console.log("Server created");
+});
+server.listen(2000);
+
+-----------------------------------------------------------------------------------------------
+Types of Modules in NodeJS:
+
+-> Core modules or In-build modules 
+-> Local modules or User Defined modules
+-> Third-party modules(npm.org)
+
+-----------------------------------------------------------------------------------------------
+Why NodeJs is preferred over other backend technologies like Java and Php?
+
+-> NodeJS is really Fast.
+-> NPM has over 50,000 modules.
+-> Perfect for the data-intensive and real-time web applications as NodeJs never waits for an API to return data as it is 
+    Non-Blocking I/O and Asynchronous.
+-> It is Single threaded and follows Event-Driven Model.
+
+-----------------------------------------------------------------------------------------------
+Which Database is the most popularly used with NodeJS?
+
+-> MongoDB is the most popularly Used Database with NodeJS.
+-> It is NoSQL, cross-platform and document oriented database.
+-> It provides high performance, high availability and easy scalability.
+      Table - Collection
+      Row - Document
+
+-----------------------------------------------------------------------------------------------
+Mention a couple of popular libraries used in NOdeJs ?
+
+-> Express
+-> Mongoose
+
+-----------------------------------------------------------------------------------------------
+What are the Pros and Cons of the NodeJS?
+
+Pros:
+-> Fast Processing and an Event-Driven Model.
+-> NPM has oven 50,000 packages that provides functionality to an application.
+-> Best suited for Streaming huge amounts of data and I/O intensive operations.
+
+Cons:
+-> Not Suitable for Heavy Computational Tasks, like AI.
+-> Dealing with Relational Database(MySQL) is not a good option for NodeJS.
+
+-----------------------------------------------------------------------------------------------
+What is Event-Driven Programming?
+
+-> Event-Driven Programming approach uses Events to trigger various functions.
+-> Event Can be anything like pressing a key, clicking a mouse button.
+
+-----------------------------------------------------------------------------------------------
+What is an Event Loop?
+
+-----------------------------------------------------------------------------------------------
+What is Event Emitter in NodeJS?
+
+-----------------------------------------------------------------------------------------------
+NodeJS Architecture?
+
+-----------------------------------------------------------------------------------------------
+What are types of API functions in NodeJS?
+
+-> Asynchronous - Non-blocking function
+-> Synchronous - blocking function
+
+-----------------------------------------------------------------------------------------------
+What is package.json file?
+
+-> It is the very important file in the NodeJS application.
+-> This file holds the metadata(name, version, description, main, scripts, author, license, etc...) about the particular Project.
+-> package.json file is present in the root directory of any Node Applications.
+-> It is created when we initialize the NodeJs Project using command: npm init
+
+-----------------------------------------------------------------------------------------------
+How to create simple ExpressJS applications?
+
+-----------------------------------------------------------------------------------------------
+What are Streams in NodeJs?
+
+-> Streams are objects that lets you to read data or write data continuously.
+-> There are Four Types of Streams:
+    1) Readable - Streams from which data can be read.
+    2) Writeable - Streams to which data can be written.
+    3) Duplex - Both Readable and Writeable streams.
+    4) Transform - Streams that can be manipulate the data while it is being read or written.
+
+-----------------------------------------------------------------------------------------------
+How do you install, update and delete dependencies?
+
+-> install dependencies - npm install express
+-> update dependencies - npm update express
+-> delete dependencies - npm uninstall express
+
+-----------------------------------------------------------------------------------------------
+What is the purpose of module.exports?
+
+-----------------------------------------------------------------------------------------------

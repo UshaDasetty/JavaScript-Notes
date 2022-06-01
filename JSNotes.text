@@ -1,0 +1,71 @@
+JavaScript
+V8 Engine
+ECMAScript
+Variables and Data Types
+Interpollation
+**************************************************************************************************
+V8 Engine:-
+-> V8 is the name of the Javascript engine which is developed by Google chrome.
+-> It is run time environment.
+-> It is used to execute JavaScript code while browsing the chrome.
+-> Every Browser is having Javascript engine.
+     1) V8(chrome)
+     2) SpiderMonkey(Firefox)
+     3) Rhino(Mozilla)
+
+-------------------------------------------------------------------------
+
+ECMAScript:-
+-> European Computer Manfactures Association Script).
+-> It is also known ECMA-262.
+-> First Edition was released in 1997.
+-> It is a Scripting language based on JavaScript.
+-> Invented by Brendan Eich at NetsScape.
+-> ES6 to ES10
+-> ES6 Features are:
+    1) let keyword
+    2) const keyword
+    3) Arrow functions
+    4) For/of and For/in
+    5) Object Destructuring
+    6) Promises
+    7) Default parameters
+    8) Spread Operators
+    9) Rest Operators
+    10) this keyword
+
+ -------------------------------------------------------------------------
+
+ Variables:-
+
+ Variables: Variables are containers for storing data, Always declare Javascript variables with var, let and const keywords.
+   
+    var -    hoisting        &    mutable
+    let -    not Hoisting    &    mutable
+    const -  not Hoisting    &    not mutable
+
+-------------------------------------------------------------------------
+
+DataTypes:-
+
+ DataType: Type of the value assigned.
+    1) Primitive types
+        - String
+        - Number
+        - Boolean
+        - Undefined
+        - Null
+
+    2) Non-primitive types
+        - Object
+        - Array
+        - RegExp
+
+-------------------------------------------------------------------------
+
+Interpollation: concating string with variable using ` ${}`
+
+-------------------------------------------------------------------------
+
+
+-------------------------------------------------------------------------
