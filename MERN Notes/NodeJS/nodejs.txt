@@ -12,7 +12,7 @@ What is Event-Driven Programming?
 What is an Event Loop? 
 What is an Event Queue? 
 What is Event Emitter in NodeJS? 
-NodeJS Architecture? 
+NodeJS Architecture? *
 What are types of API functions in NodeJS? 
 What is package.json file?
 How to create simple ExpressJS applications? 
@@ -22,24 +22,26 @@ What is REPL in NodeJs?
 What is Control Flow Functions in Node?
 What is the use of Buffer class in NodeJS? 
 What is Piping in NodeJs? 
-What is Reactor Pattern in NodeJs? 
-Describe the Exit codes in NodeJs? 
+What is Reactor Pattern in NodeJs? *
+Describe the Exit codes in NodeJs? *
 Explain the Concepts of middleware in NodeJs? 
-What are the types of HTTP requests? 
-What is the Use of the NODE_ENV variable?
+What are the types of HTTP requests? *
+What is the Use of the NODE_ENV variable? *
 How do we Handle Errors in NodeJs?
 What is the Difference between http and https?
 What are the Various Timing Featues in NodeJs?
 What is MVC Architecture?
 What is REST API?
 What are Routes?
-What are Endpoints?
+What are Endpoints? *
 ************************************************************************************************
 https://nodejs.dev/learn
 
 https://nodejs.org/dist/latest-v18.x/docs/api/
 
 https://www.npmjs.com/
+
+http://expressjs.com/en/
 
 NodeJs:-
 -> NodeJs is an Open-Source, Cross-platform, JavaScript Runtime Environment and library for running web applications in the Server Side.
@@ -123,9 +125,12 @@ Which Database is the most popularly used with NodeJS?
       Row - Document
 
 -----------------------------------------------------------------------------------------------
-Mention a couple of popular libraries used in NOdeJs ?
+Mention a couple of popular libraries used in NodeJs ?
 
 -> Express
+    - Express is a routing and middleware web framework that has minimal functionality of its own.
+    - An Express application is essentially a series of middleware function calls.
+
 -> Mongoose
 
 -----------------------------------------------------------------------------------------------
@@ -159,7 +164,20 @@ Event Loop:-
 -----------------------------------------------------------------------------------------------
 What is Event Emitter in NodeJS?
 
+Event Emitter:-
+    -> Event Emitter is a module that facilitates the communication between the objects in NodeJS.
+    -> Most of the modules build on NodeJS, uses the EventEmitter since nodejs follows the Event-Driven Architecture.
 
+How it works:-
+    -> Event Emitter emits the data in the event, is called message.
+    -> When the message event emits some data, the listener will get the data.
+
+Event Emitter Properties:
+    -> emit() :- used to trigger an event
+    -> on() :- this method is used to listen the data from the event.
+    -> once() :- add a one-time listener.
+    -> removeListener() / off() :- remove an event listener from an event.
+    -> removeAllListeners() :- remove all listeners for an event
 
 -----------------------------------------------------------------------------------------------
 NodeJS Architecture?
@@ -185,6 +203,18 @@ package-lock.json :-
 
 -----------------------------------------------------------------------------------------------
 How to create simple ExpressJS applications?
+
+const express = require('express')
+const app = express()
+const port = 3000
+
+app.get('/', (req, res) => {
+  res.send('Hello World!')
+})
+
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`)
+})
 
 -----------------------------------------------------------------------------------------------
 What are Streams in NodeJs?
@@ -265,8 +295,6 @@ What is Buffer class in NodeJS?
 -> the Buffer created by alloc will be initialized with zeroes.
 -> the buffer created by allocUnsafe will be uninitialized. 
 
-
-
 -----------------------------------------------------------------------------------------------
 What is Piping in NodeJs?
 
@@ -281,6 +309,27 @@ Describe the Exit codes in NodeJs?
 
 -----------------------------------------------------------------------------------------------
 Explain the Concepts of middleware in NodeJs?
+http://expressjs.com/en/guide/writing-middleware.html
+http://expressjs.com/en/guide/using-middleware.html
+
+-> Middleware functions are functions that have access to the request object (req), the response object (res), and 
+   the next middleware function in the application’s request-response cycle.
+-> The next middleware function is commonly denoted by a variable named next.
+-> Middleware functions can perform the following tasks:
+    - Execute any code.
+    - Make changes to the request and the response objects.
+    - End the request-response cycle.
+    - Call the next middleware function in the stack.
+
+-> If the current middleware function does not end the request-response cycle, it must call next() to pass control to the 
+   next middleware function. Otherwise, the request will be left hanging.
+
+-> Types of Middlewares:
+    - Application-level middleware
+    - Router-level middleware
+    - Error-handling middleware
+    - Built-in middleware
+    - Third-party middleware
 
 -----------------------------------------------------------------------------------------------
 What are the types of HTTP requests?
