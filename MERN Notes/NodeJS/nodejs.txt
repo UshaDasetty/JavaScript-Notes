@@ -10,6 +10,7 @@ Mention a couple of popular libraries used in NOdeJs ?
 What are the Pros and Cons of the NodeJS?
 What is Event-Driven Programming? 
 What is an Event Loop? 
+What is an Event Queue? 
 What is Event Emitter in NodeJS? 
 NodeJS Architecture? 
 What are types of API functions in NodeJS? 
@@ -29,15 +30,41 @@ What is the Use of the NODE_ENV variable?
 How do we Handle Errors in NodeJs?
 What is the Difference between http and https?
 What are the Various Timing Featues in NodeJs?
+What is MVC Architecture?
+What is REST API?
+What are Routes?
+What are Endpoints?
 ************************************************************************************************
+https://nodejs.dev/learn
+
+https://nodejs.org/dist/latest-v18.x/docs/api/
+
+https://www.npmjs.com/
 
 NodeJs:-
 -> NodeJs is an Open-Source, Cross-platform, JavaScript Runtime Environment and library for running web applications in the Server Side.
 -> NodeJs is petfect for data-intesive applications as it uses an Asynchronous and Event-driven model.
+-> NodeJS runs on chrome V8 engine which converts javascript code into machine code.
 
 -------------------------------------------------------------------------------------------------
 How NodeJs Work:-
 
+-> NodeJs accepts the request from the client and sends the response, while working with them NodeJS handles them with single thread.
+-> To operate I/O operations or requests NodeJS uses conceps of threads.
+-> Thread is a sequence(set) of instructions that the server needs to perform.
+-> It runs parallelly on the server to provide information to multiple clients.
+-> Each request from the client is an event.
+-> it can handle concurrent requests with a single thread without blocking requests.
+-> NodeJS basically works on two concepts: 
+    - Asynchronous
+    - Non-blocking I/O
+Asynchronous:-
+   -> Asynchronous means executing a callback function. 
+   -> The moment we get response from the other server or database, it will execute callback function.
+   -> Callback functions are called as soon as some work is finished, because of Event Driven Architecture.
+
+Non-blocking I/O:-
+    -> Non-blocking I/O means working with multiple requests without blocking the thread for a single request.
 -------------------------------------------------------------------------------------------------
 Where can we use NodeJS?
 
@@ -64,6 +91,7 @@ What are Modules in NodeJs?
 Eg:- Creating a web server
 
 var http = require('http');   // includes module 
+
 var server = http.createServer(function (req, res) {
     console.log("Server created");
 });
@@ -119,10 +147,19 @@ What is Event-Driven Programming?
 -> Event Can be anything like pressing a key, clicking a mouse button.
 
 -----------------------------------------------------------------------------------------------
-What is an Event Loop?
+What is an Event Queue and Event Loop?
+
+Event Queue:-
+    As soon as the request send, the thread places the request into a queue. It is called Event Queue.
+
+Event Loop:- 
+    -> Event Loop is is an indefinite loop that continuously receives the request and processes them.
+    -> It checks the queue and waits for the incoming request.
 
 -----------------------------------------------------------------------------------------------
 What is Event Emitter in NodeJS?
+
+
 
 -----------------------------------------------------------------------------------------------
 NodeJS Architecture?
@@ -131,15 +168,20 @@ NodeJS Architecture?
 What are types of API functions in NodeJS?
 
 -> Asynchronous - Non-blocking function
--> Synchronous - blocking function
+-> Synchronous  - blocking function
 
 -----------------------------------------------------------------------------------------------
-What is package.json file?
+What is package.json file and package.lock.json file?
 
--> It is the very important file in the NodeJS application.
--> This file holds the metadata(name, version, description, main, scripts, author, license, etc...) about the particular Project.
--> package.json file is present in the root directory of any Node Applications.
--> It is created when we initialize the NodeJs Project using command: npm init
+package.json :-
+    -> It is the very important file in the NodeJS application.
+    -> This file holds the metadata(name, version, description, main, scripts, author, license, etc...) about the particular Project.
+    -> package.json file is present in the root directory of any Node Applications.
+    -> It is created when we initialize the NodeJs Project using command: npm init
+
+package-lock.json :-
+    The goal of package-lock.json file is to keep track of the exact version of every package that is installed so that a product is 
+    100% reproducible in the same way even if packages are updated by their maintainers.
 
 -----------------------------------------------------------------------------------------------
 How to create simple ExpressJS applications?
@@ -149,26 +191,54 @@ What are Streams in NodeJs?
 
 -> Streams are objects that lets you to read data or write data continuously.
 -> There are Four Types of Streams:
-    1) Readable - Streams from which data can be read.
-    2) Writeable - Streams to which data can be written.
-    3) Duplex - Both Readable and Writeable streams.
-    4) Transform - Streams that can be manipulate the data while it is being read or written.
+    1) Readable     - Streams from which data can be read.
+    2) Writeable    - Streams to which data can be written.
+    3) Duplex       - Both Readable and Writeable streams.
+    4) Transform    - Streams that can be manipulate the data while it is being read or written.
 
 -----------------------------------------------------------------------------------------------
 How do you install, update and delete dependencies?
 
 -> install dependencies - npm install express
--> update dependencies - npm update express
--> delete dependencies - npm uninstall express
+-> update dependencies  - npm update express
+-> delete dependencies  - npm uninstall express
 
 -----------------------------------------------------------------------------------------------
 What is the purpose of module.exports?
 
+-> The purpose of module.exports is to achieve modular programming.
+-> By using module.exports, we can export the functions, objects, and references from one file to another file,
+    by importing them by using the require() method.
+-> If we not use modules.exports it becomes difficult to write large programs.
+
+
+// car.js
+exports.car = {
+  brand: 'Ford',
+  model: 'Fiesta',
+};
+
+module.exports = {
+  brand: 'Tesla',
+  model: 'Model S',
+};
+
+// app.js
+const tesla = require('./car');
+const ford = require('./car').car;
+
+console.log(tesla, ford);
+
 -----------------------------------------------------------------------------------------------
 What is REPL in NodeJs?
 
+-> REPL stands for Read Evaluate Print Loop.
+-> It is a programming language environment (basically a console window) that takes single expression as user input and returns 
+   the result back to the console after execution. 
+-> The REPL session provides a convenient way to quickly test simple JavaScript code.
+
 -----------------------------------------------------------------------------------------------
-What is Control Flow Functions in Node?
+What is Control Flow Functions in NodeJS?
 
 -> Control Flow Functions is a piece of code which runs in between the several Asynchronous functions calls.
 -> The Control Flow does the following jobs:
@@ -178,7 +248,24 @@ What is Control Flow Functions in Node?
     4) Call the next step in a program.
 
 -----------------------------------------------------------------------------------------------
-What is the use of Buffer class in NodeJS?
+What is Buffer class in NodeJS?
+
+-> The Buffer class in Node.js is designed to handle raw binary data.
+-> Each buffer corresponds to some raw memory allocated outside V8.
+-> buffers are usually seen in the context of binary data coming from streams, such as fs.createReadStream.
+-> Buffer class is a global class that can be accessed in an application without importing the buffer module.
+-> Creating a buffer using 3 methods: 
+
+    const buf = Buffer.from('Hey!');
+
+    const buf = Buffer.alloc(1024);
+
+    const buf = Buffer.allocUnsafe(1024);
+
+-> the Buffer created by alloc will be initialized with zeroes.
+-> the buffer created by allocUnsafe will be uninitialized. 
+
+
 
 -----------------------------------------------------------------------------------------------
 What is Piping in NodeJs?
@@ -204,16 +291,108 @@ What is the Use of the NODE_ENV variable?
 -----------------------------------------------------------------------------------------------
 How do we Handle Errors in NodeJs?
 
+-> we can handle errors in callbacks. Its better to use async/await to overcome drawbacks of callback and try-catch statements.
+-> Creating error file and handling all type of Errors there.
+
 -----------------------------------------------------------------------------------------------
-What is the Difference between http and https
+What is the Difference between http and https?
+
+        HTTP                                      HTTPS
+    _________________________________________________________ 
+1) Uses port 80 by default.                   1) Uses port 443 by default.
+
+2) Less secure as the data can be             2) Designed to prevent hackers from accessing
+   vulnarable to hackers.                        critical information.
+
+3) Good fit for websites, designed            3) If the website needs to collect private information
+   for information consumption like              like credit card number, then it is more secured protocol.
+   blogs.
+
+4) Do not need SSL Certificate.               4) Requires an SSL(Secure Sockets Layer) certificate.
+
+5) Stands for Hyper Text Transfer Protocol    5) Stands for Hyper Text Transfer Protocol Secure
+
+6) There is no encryption and decryption      6) There is encryption and decryption 
+
+7) It is Fast                                 7) It is Slow
+
+8) Works in the Application layer of the      8) Works in the Transport layer of the OSI model.
+   OSI model.
+
+9) http://                                    9) https://
 
 -----------------------------------------------------------------------------------------------
 What are the Various Timing Featues in NodeJs?
 
 -> Timers module is provided by NodeJs, which contains various functions for executing the code after a specified period of time.
 -> Various functions that are provided by this module are:
+
     1) setTimeout/clearTimeout - Used to schedule code execution, after a specified period of time.
+
+            const id = setTimeout(() => {
+                console.log("Should run after 2 seconds");
+            }, 2000);
+
+            clearTimeout(id);
+
+
     2) setInterval/clearInterval - Used to execute block of code multiple times.
-    3) setImmediate/clearImmediate - Used to execute code at the end of the current event loop cycle.
+
+            const id = setInterval(() => {
+                 console.log("runs every 2 seconds");
+            }, 2000);
+
+            clearInterval(id);
+
+
+    3) setImmediate/clearImmediate  - Used to execute code at the end of the current event loop cycle.
+
+-----------------------------------------------------------------------------------------------
+What is MVC Architecture?
+
+-> MVC stands for Model, View and Controller. It is most popular way of organizing our Code.
+-> It is using in many languages like NodeJS, C++, Java and so on.
+-> Each section of MVC has different Purpose.
+
+    Model:- 
+        -> Part of the Application that deals with database. 
+        -> It holds the raw data of the application.
+
+    View:- 
+        -> In views section we write code that directly interacts with the user. 
+        -> Everything that user sees and interacts with the application comes under View.
+        -> It makes our app look nice, as we are writing styles here.
+
+    Controller:-
+        -> In Controller section we write the logic of our application.
+        -> It is a connectors between the Views and the Models.
+        -> Here we call our models to get the data, and pass that data to the views, and then it sends that data to the user.
+
+-----------------------------------------------------------------------------------------------
+What is REST API?
+
+API:-
+    -> Application Programming Interface
+    -> It is a set of Commands, functions, and protocols to do particular task.
+    -> It is possible to track the delivery guy's location when we order food. this feature is build using Google Map API.
+
+REST:-
+    -> Representational State Transfer.
+    -> REST is an architectural style for Creating websites using HTTP Protocol.
+
+RESTful API:-
+    -> REST API is an application programming interface that adheres the constraints of REST architectural styles and enables 
+       interaction with RESTful web services. 
+
+-----------------------------------------------------------------------------------------------
+What are Routes?
+
+Route:- 
+    -> Route is a section of code tha associates with HTTP verbs(GET, POST, PUT, DELETE, etc).
+    -> when we have an URL path, function that called to handle that path is route.
+        eg:- router.route('/user').get()
+
+-----------------------------------------------------------------------------------------------
+What are Endpoints?
 
 -----------------------------------------------------------------------------------------------
