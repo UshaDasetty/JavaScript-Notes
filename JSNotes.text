@@ -44,7 +44,7 @@ V8 Engine:-
      2) SpiderMonkey(Firefox)
      3) Rhino(Mozilla)
 
--------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ECMA Script:-
 -> European Computer Manfactures Association Script).
@@ -66,7 +66,7 @@ ECMA Script:-
     10) this keyword
     11) Array methods
 
- -------------------------------------------------------------------------
+ ---------------------------------------------------------------------------------------------------------------------
 
  Variables:-
 
@@ -76,7 +76,7 @@ ECMA Script:-
     let -    not Hoisting    &    mutable
     const -  not Hoisting    &    not mutable
 
--------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------
 
 DataTypes:-
 
@@ -93,11 +93,125 @@ DataTypes:-
         - Array
         - RegExp
 
--------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------
 
 Interpollation: concating string with variable using ` ${}`
 
--------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------
+DOM
+
+---------------------------------------------------------------------------------------------------------------------
+Callbacks
+
+-> A callback function is a function passed into another function as an argument.
+-> A callback function executes after outer function executes.
+-> Higher Order function:- A function which receives other function as an argument is called Higher Order Function.
+
+        function greeting(name) {
+        alert('Hello ' + name);
+        }
+
+        function processUserInput(callback) {
+        var name = prompt('Please enter your name.');
+        callback(name);
+        }
+
+        processUserInput(greeting);
+
+-> In the above example greeting() is a callback function, and processUserInput() is Higher Order Function.
+-> greeting() is executed after processUserInput() executes.
 
 
--------------------------------------------------------------------------
+
+Callback Hell :-
+
+-> When we are having nested callbacks is called callback hell.
+-> It is difficult to handle callback hell, to overcome this we use promises.
+
+        setTimeout(() => {
+            console.log("Hello");
+            setTimeout(() => {
+                console.log("Hey");
+                setTimeout(() => {
+                    console.log("Namaste");
+                    setTimeout(() => {
+                        console.log("Hi");
+                        setTimeout(() => {
+                            console.log("Bonjour");
+                        }, 2000);
+                    }, 2000);
+                }, 2000);
+            }, 2000);
+        }, 2000);
+
+---------------------------------------------------------------------------------------------------------------------
+Promises
+
+-> Promises are used to handle asynchronous operations in JavaScript. 
+-> It is easy to manage when dealing with multiple asynchronous operations, 
+    where callbacks can create callback hell leading to unmanageable code. 
+
+-> A Promise has four states: 
+    fulfilled: Action related to the promise succeeded.
+    rejected: Action related to the promise failed.
+    pending: Promise is still pending i.e. not fulfilled or rejected yet.
+    settled: Promise has fulfilled or rejected.
+
+-> Parameters:
+    - Promise takes two arguments resolve and reject
+    - If everything went well then it call resolve().
+    - If everything do not go well then it call reject().
+
+
+        var promise = new Promise(function(resolve, reject) {
+        const x = "usha";
+        const y = "usha"
+        if(x === y) {
+            resolve();
+        } else {
+            reject();
+        }
+        });
+
+        promise.
+            then(function () {
+                console.log('Success, You are a usha');
+            }).
+            catch(function () {
+                console.log('Some error has occurred');
+            });
+
+
+
+Promise Hell :-
+
+-> When we have nested promises i.e., having many then() blocks it is difficult to handle.
+-> to overcome this difficult, we Async and await.
+
+
+        var promise = new Promise(function(resolve, reject) {
+            const x = "usha";
+            const y = "usha"
+            if(x === y) {
+                resolve();
+            } else {
+                reject();
+            }
+        });
+
+        promise.
+            then(function () {
+                console.log('Success, You are a usha');
+            }).
+            then(function () {
+                console.log('Welcome usha');
+            }).
+            then(function () {
+                console.log('How are you');
+            }).
+            catch(function () {
+                console.log('Some error has occurred');
+            });
+
+---------------------------------------------------------------------------------------------------------------------
+Async await
