@@ -35,6 +35,7 @@ What is REST API?
 What are Routes?
 What are Endpoints? 
 libuv
+What is Authentication and Autherization?
 ************************************************************************************************
 https://nodejs.dev/learn
 
@@ -504,5 +505,11 @@ libuv
 -> It is important dependency in NodeJS is libuv, a C library that is used to abstract non-blocking I/O operations.
 -> It provides mechanisms to handle file system, DNS, network, child processes, pipes, signal handling, polling and streaming. 
 -> It also includes a thread pool for offloading work for some things that can't be done asynchronously at the operating system level.
+
+-----------------------------------------------------------------------------------------------
+What is Authentication and Autherization?
+
+Authentication: who you are 
+Autherization: what you can do
 
 -----------------------------------------------------------------------------------------------

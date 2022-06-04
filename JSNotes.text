@@ -1,8 +1,39 @@
-JavaScript
 V8 Engine
-ECMAScript
-Variables and Data Types
+ECMA Script
+Variables 
+Data Types
 Interpollation
+DOM 
+Callbacks
+Promises
+Async await
+Classes
+Events
+Event listeners
+Event Bubbling and Event Capturing
+Fetch API
+Array methods
+String methods
+Objects
+Scoping
+Hoisting 
+Closures
+this keyword
+'usestrict'
+Pop Up boxes 
+Console Object methods
+Diff between parameters and arguements
+IIFE
+Local Storage, Session Storage and Cookies
+Iterations
+new keyword
+Errors
+Math Operators
+Date Operators
+Outputs
+call(), apply() and bind() methods
+prototype
+
 **************************************************************************************************
 V8 Engine:-
 -> V8 is the name of the Javascript engine which is developed by Google chrome.
@@ -15,7 +46,7 @@ V8 Engine:-
 
 -------------------------------------------------------------------------
 
-ECMAScript:-
+ECMA Script:-
 -> European Computer Manfactures Association Script).
 -> It is also known ECMA-262.
 -> First Edition was released in 1997.
@@ -33,6 +64,7 @@ ECMAScript:-
     8) Spread Operators
     9) Rest Operators
     10) this keyword
+    11) Array methods
 
  -------------------------------------------------------------------------
 
