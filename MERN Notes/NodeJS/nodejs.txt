@@ -12,7 +12,7 @@ What is Event-Driven Programming?
 What is an Event Loop? 
 What is an Event Queue? 
 What is Event Emitter in NodeJS? 
-NodeJS Architecture? *
+NodeJS Architecture? 
 What are types of API functions in NodeJS? 
 What is package.json file?
 How to create simple ExpressJS applications? 
@@ -22,18 +22,19 @@ What is REPL in NodeJs?
 What is Control Flow Functions in Node?
 What is the use of Buffer class in NodeJS? 
 What is Piping in NodeJs? 
-What is Reactor Pattern in NodeJs? *
-Describe the Exit codes in NodeJs? *
+What is Reactor Pattern in NodeJs? 
+Describe the Exit codes in NodeJs? 
 Explain the Concepts of middleware in NodeJs? 
-What are the types of HTTP requests? *
-What is the Use of the NODE_ENV variable? *
+What are the types of HTTP requests? 
+What is the Use of the NODE_ENV variable? 
 How do we Handle Errors in NodeJs?
 What is the Difference between http and https?
 What are the Various Timing Featues in NodeJs?
 What is MVC Architecture?
 What is REST API?
 What are Routes?
-What are Endpoints? *
+What are Endpoints? 
+libuv
 ************************************************************************************************
 https://nodejs.dev/learn
 
@@ -304,8 +305,34 @@ What is Piping in NodeJs?
 -----------------------------------------------------------------------------------------------
 What is Reactor Pattern in NodeJs?
 
+-> Reactor Pattern is used to avoid the blocking of the Input/Output operations.
+
 -----------------------------------------------------------------------------------------------
 Describe the Exit codes in NodeJs?
+
+-> exit() function. 
+-> Exit code 1 is used when unhandled fatal exceptions occur. 
+-> whereas Exit code 0 is used to terminate when no more async operations are happening.
+-> There are two ways that are generally used  to terminate a Node.js program:
+    - process.exit() or 
+    - process.exitCode variable.
+
+
+const express = require('express')
+const app = express()
+  
+var a=10;
+var b=20;
+  
+if(a==10){
+  console.log(a)
+  process.exitCode=0;
+}
+  
+console.log(b);
+  
+app.listen(3000, () => 
+console.log('Server ready'))
 
 -----------------------------------------------------------------------------------------------
 Explain the Concepts of middleware in NodeJs?
@@ -334,8 +361,33 @@ http://expressjs.com/en/guide/using-middleware.html
 -----------------------------------------------------------------------------------------------
 What are the types of HTTP requests?
 
+-> HTTP request methods are the actions that ate initiated by the client to perform certain actions.
+-> These HTTP requests are also called nouns or HTTP Verbs.
+-> There are 9 types of HTTP requests methods:
+    1) GET :-   It is used to get the desired reources from the server. It does not affect the state of the server.
+    2) POST :-  It is used to submit the information to the server. It chages the state of the server. 
+    3) PUT :-   It is used when we need to modify the resource which is already present in the server.
+    4) PATCH :- It is used to modify only the necessary part of the data or response. it does not modify the entire response. 
+    5) DELETE :- It is used to delete the specified resource using resorce id.
+    6) HEAD :-  The server sends the response without body. It is similar to the GET, but is fast as it transfer small data.
+    7) CONNECT :- It is used to establish two way communication between the client and the requested resource. 
+                  It is used to push our proxy to start HTTP tunnel.
+    8) TRACE :- It is used for debugging. It performs a message loop-back test along the path to the desired data.
+    9) OPTIONS :- It is used to describe the communication options available for the target resources. 
+                  The client can use URL or asterik(*) to describe the communication options available, if they want to target the server.
+
 -----------------------------------------------------------------------------------------------
 What is the Use of the NODE_ENV variable?
+
+ -> The NODE_ENV works like a flag which indicates whether the server is running on development or production mode. 
+ -> The express framework checks the flag value in the runtime and sets value depending on the environment.
+ -> flag :- flag is a predefined bit or bit sequence that holds a binary value.
+
+ if(process.env.NODE_ENV == 'development') {
+	db.connect('localhost:1234')
+} else {
+	db.connect('https://production-server.com')
+}
 
 -----------------------------------------------------------------------------------------------
 How do we Handle Errors in NodeJs?
@@ -443,5 +495,14 @@ Route:-
 
 -----------------------------------------------------------------------------------------------
 What are Endpoints?
+
+
+
+-----------------------------------------------------------------------------------------------
+libuv
+
+-> It is important dependency in NodeJS is libuv, a C library that is used to abstract non-blocking I/O operations.
+-> It provides mechanisms to handle file system, DNS, network, child processes, pipes, signal handling, polling and streaming. 
+-> It also includes a thread pool for offloading work for some things that can't be done asynchronously at the operating system level.
 
 -----------------------------------------------------------------------------------------------
