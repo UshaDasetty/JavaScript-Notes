@@ -12,8 +12,8 @@ Events
 Event listeners and Event Target
 Event Bubbling and Event Capturing
 Fetch API
-Array methods
-String methods
+Arrays
+Strings
 Objects
 Scoping
 Hoisting 
@@ -428,5 +428,257 @@ https://www.javascripttutorial.net/javascript-fetch-api/
 -> The Fetch API is a modern interface that allows you to make HTTP requests to servers from web browsers.
 
 ---------------------------------------------------------------------------------------------------------------------
-Array methods
+Arrays
+https://www.programiz.com/javascript/array
 
+-> An array is an object that can store multiple values at once.
+        - Here, words is an array. The array is storing 3 values.
+
+          const words = ['hello', 'world', 'welcome'];
+
+
+-> Creating an array
+        - Using array literals []   
+            const array1 = ["eat", "sleep"];
+
+        - Using the new keyword
+            const array2 = new Array("eat", "sleep");
+            
+
+-> Array Examples
+
+            // empty array
+            const myList = [ ];
+
+            // array of numbers
+            const numberArray = [ 2, 4, 6, 8];
+
+            // array of strings
+            const stringArray = [ 'eat', 'work', 'sleep'];
+
+            // array with mixed data types
+            const newData = ['work', 'exercise', 1, true];
+
+            // can also store arrays, functions and other objects inside an array. 
+            const newData = [
+                {'task1': 'exercise'},
+                [1, 2 ,3],
+                function hello() { console.log('hello')}
+            ];
+
+
+-> Accessing the element of an array.
+
+            const myArray = ['h', 'e', 'l', 'l', 'o'];
+
+            // first element
+            console.log(myArray[0]);  // "h"
+
+            // second element
+            console.log(myArray[1]); // "e"
+
+
+-> Array methods
+
+        - concat() : joins two or more arrays and returns a result
+
+                    var concatElement = ['a', 'b'];
+                    console.log(concatElement.concat('c'));     // ['a', 'b', 'c']
+
+        - indexOf() : searches an element of an array and returns its position
+
+                    const ElementIndex = ['Fire', 'Air', 'Water'];
+                    console.log(ElementIndex.indexOf('Air'));    // 1
+
+        - find() : returns the first value of an array element that passes a test
+
+                    const arr = [1, 6, 45, 75, 43];
+                    const findElement = arr.find(element => element > 40 );
+                    console.log(findElement);  // 45
+
+        - findIndex() : returns the first index of an array element that passes a test
+
+                    const array1 = [5, 12, 8, 130, 44];
+                    const isLargeNumber = (element) => element > 10;
+                    console.log(array1.findIndex(isLargeNumber));   // 1
+
+        - forEach() : calls a function for each element
+
+                    const array = ['a', 'b', 'c'];
+                    array.forEach(element => console.log(element));
+
+        - includes() : checks if an array contains a specified element
+
+                    const pets = ['cat', 'dog', 'bat'];
+                    console.log(pets.includes('cat'));   // true
+
+        - push() : adds a new element to the end of an array and returns the new length of an array
+
+                    const animals = ['pigs', 'goats', 'sheep'];
+                    const count = animals.push('cows');
+
+                    console.log(count);    // 4
+                    console.log(animals);  // ["pigs", "goats", "sheep", "cows"]
+
+        - unshift() : adds a new element to the beginning of an array and returns the new length of an array
+
+                    const animals = ['pigs', 'goats', 'sheep'];
+                    const count = animals.unshift('cows');
+
+                    console.log(count);    // 4
+                    console.log(animals);  // ["cows", "pigs", "goats", "sheep"]
+
+        - pop() : removes the last element of an array and returns the removed element
+
+                    const animals = ['pigs', 'goats', 'sheep'];
+                    const DeletedElement = animals.pop();
+
+                    console.log(DeletedElement);    // "sheep"
+                    console.log(animals);           // ["pigs", "goats"]
+
+        - shift() : removes the first element of an array and returns the removed element
+
+                    const animals = ['pigs', 'goats', 'sheep'];
+                    const DeletedElement = animals.shift();
+
+                    console.log(DeletedElement);    // "pigs"
+                    console.log(animals);           // ["goats", "sheep"]
+
+        - sort() : sorts the elements alphabetically in strings and in ascending order
+
+                    const words = ['Ball', 'Dog', 'Apple', 'Cat'];
+                    const words1 = ['ball', 'Dog', 'apple', 'Cat'];
+
+                    words.sort();
+                    words1.sort();
+
+                    console.log(words);    // ["Apple", "Ball", "Cat", "Dog"]
+                    console.log(words1);   // ["Cat", "Dog", "apple", "ball"]
+
+        - slice() : selects the part of an array and cuts the array, i.e., excludes last element and returns the new array
+
+                    - slice()
+                    - slice(start)
+                    - slice(start, end)
+
+                    const animals = ['ant', 'bison', 'camel', 'duck', 'elephant'];
+                    const SpliceElement = animals.slice(0,2);
+
+                    console.log(SpliceElement);    // ["ant", "bison"]
+
+
+        - splice() : removes or replaces existing elements and/or adds new elements
+
+                    - splice(start, deleteCount)
+                    - splice(start)
+                    - splice(start, deleteCount)
+                    - splice(start, deleteCount, item1)
+                    - splice(start, deleteCount, item1, item2, itemN)
+
+                    const animals = ['pigs', 'goats', 'sheep'];
+                    const SpliceElement = animals.splice(1,2);
+
+                    console.log(SpliceElement);    // ["goats", "sheep"]
+                    console.log(animals);    // ["pigs"]
+
+        - join() : The join() method creates and returns a new string by concatenating all of the elements in an array, 
+                   separated by commas or a specified separator string. If the array has only one item, then that item will be 
+                   returned without using the separator.
+
+                    const joinElements = ['Fire', 'Air', 'Water'];
+                    console.log(joinElements.join('-'));      // "Fire-Air-Water"
+
+        - every() : it returns true, only when each and every element satisfies the condition, else false.
+
+                    const arr = [1, 44, 67, 3, 65, 23];
+
+                    const EveryElement = arr.every(element => element < 100);
+                    console.log(EveryElement);  // true
+
+        - some() : it returns true, if any element satisfies the condition.
+
+                    const arr = [1, 44, 67, 3, 65, 23];
+
+                    const SomeElements = arr.some(element => element > 50);
+                    console.log(SomeElements);  // true
+
+---------------------------------------------------------------------------------------------------------------------
+Strings
+
+-> JavaScript string is a primitive data type that is used to work with texts. 
+
+-> Creating JavaScript Strings
+        - Single quotes 
+        - Double quotes
+        - Backticks
+
+        //strings example
+        const name = 'Peter';
+        const name1 = "Jack";
+        const result = `The names are ${name} and ${name1}`;
+
+-> Accessing String Character
+
+        const a = 'hello';
+        console.log(a[1]);           // "e"
+        console.log(a.charAt(1));    // "e"
+
+-> In JavaScript, strings are immutable. That means the characters of a string cannot be changed.
+
+        let a = 'hello';
+        a[0] = 'H';
+        console.log(a);    // "hello"
+
+-> you can assign the variable name to a new string.
+
+        let a = 'hello';
+        a = 'Hello';
+        console.log(a);    // "Hello"
+
+-> JavaScript is case-sensitive. That means in JavaScript, the lowercase and uppercase letters are treated as different values.
+
+        const a = 'a';
+        const b = 'A'
+        console.log(a === b);    // false
+
+-> The JavaScript String() function is used to convert various data types to strings.
+
+        const a = 225;     // number
+        const b = true;    // boolean
+
+        //converting to string
+        const result1 = String(a);
+        const result2 = String(b);
+
+        console.log(result1);    // "225"
+        console.log(result2);    // "true"
+
+-> String methods
+
+        - charAt(index) : returns the character at the specified index
+
+                const sentence = 'JavaScript';
+                const index = 5;
+                console.log(`The character at index ${index} is ${sentence.charAt(index)}`);
+
+        - concat() : joins two or more strings
+
+        - replace() : replaces a string with another string
+
+        - split() : converts the string to an array of strings
+
+        - substr(start, length) : returns a part of a string
+
+        - substring(start,end) : returns a part of a string
+
+        - slice(start, end) : returns a part of a string
+
+        - toLowerCase() : returns the passed string in lower case
+
+        - toUpperCase() : returns the passed string in upper case
+
+        - trim() : removes whitespace from the strings
+
+        - includes() : searches for a string and returns a boolean value
+
+        - search() : searches for a string and returns a position of a match
