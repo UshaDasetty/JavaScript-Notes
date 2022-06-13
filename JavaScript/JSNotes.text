@@ -15,7 +15,7 @@ Fetch API
 Arrays
 Strings
 Objects
-Scoping
+Variable Scoping
 Hoisting 
 Closures
 this keyword
@@ -72,6 +72,11 @@ ECMA Script:-
  Variables:-
 
  Variables: Variables are containers for storing data, Always declare Javascript variables with var, let and const keywords.
+
+    - Mutable : type/value of a variable that can be changed.
+    - Hoisting : Hoisting in JavaScript is a behavior in which a function or a variable can be used before declaration. It shows undefined.
+    - Not Hoisting : If variable is not declared, it will throw an error.
+    - Not Mutable : we cannot change the value of the variable.
    
     var -    hoisting        &    mutable
     let -    not Hoisting    &    mutable
@@ -602,6 +607,8 @@ https://www.programiz.com/javascript/array
                     const SomeElements = arr.some(element => element > 50);
                     console.log(SomeElements);  // true
 
+        - reduce() : 
+
 ---------------------------------------------------------------------------------------------------------------------
 Strings
 
@@ -682,3 +689,576 @@ Strings
         - includes() : searches for a string and returns a boolean value
 
         - search() : searches for a string and returns a position of a match
+
+---------------------------------------------------------------------------------------------------------------------
+Objects
+
+-> JavaScript object is a non-primitive data-type that allows you to store multiple collections of data.
+-> JavaScript objects are a bit different. You do not need to create classes in order to create objects, like other programming languages.
+-> Each member of an object is a "key: value" pair separated by commas and enclosed in curly braces {}.
+-> "key: value" pairs are called properties.
+
+            // object
+            const student = {
+                firstName: 'usha',
+                class: 10
+            };
+
+
+-> Creating an Object 
+
+    - using new object()
+
+            let student = new object();
+            student.firstName = 'usha';
+            student.class = 10;
+
+    - using {}
+
+            const student = {
+                firstName: 'ram',
+                class: 10
+            };     
+
+
+-> Accessing Object Properties:
+
+    - Using dot notation
+
+            const person = { 
+                name: 'John', 
+                age: 20, 
+                };
+            console.log(person.name);     // John
+
+
+    - Using bracket notation
+
+            const person = { 
+                name: 'John', 
+                age: 20, 
+            };
+            console.log(person["name"]);   // John
+
+
+-> Changing property values
+
+    - using dot notation
+
+            const person = { 
+                name: 'John', 
+                age: 20, 
+            };
+            person.name = 'Usha';
+
+    - using bracket notation
+
+            const person = { 
+                name: 'John', 
+                age: 20, 
+            };
+            person['name] = 'Usha';
+
+
+-> Deleting a property
+
+            const person = { 
+                name: 'John', 
+                age: 20, 
+            };
+           delete person.age;
+
+
+-> Nested Objects
+
+            const student = { 
+                name: 'John', 
+                age: 20,
+                marks: {
+                    science: 70,
+                    math: 75
+                }
+            }
+
+            console.log(student.marks);                   // {science: 70, math: 75}
+            console.log(student.marks.science);           // 70
+
+            console.log(student["marks"]);                // {science: 70, math: 75}
+            console.log(student["marks"]["science"]);     // 70
+
+
+-> Object methods
+
+            const person = {
+                name: 'Sam',
+                age: 30,
+
+                // using function as a value
+                greet: function() { console.log('hello') }
+            }
+
+            person.greet();      // hello
+
+---------------------------------------------------------------------------------------------------------------------
+Variable Scoping
+
+-> Scope refers to the availability of variables and functions in certain parts of the code.
+-> a variable has two types of scope:
+    - Global scope
+    - Local scope
+
+
+-> Global Scope:
+    - A variable declared at the top of a program or outside of a function is considered a global scope variable.
+    - The value of a global variable can be changed inside a function.
+    - It allows both mutation and hoisting of variables.
+
+        
+            var a = "hello";
+
+            function greet() {
+                a = 3;
+            }
+
+            // before the function call
+            console.log(a);   // "hello"
+
+            //after the function call
+            greet();
+            console.log(a);   // 3
+
+
+-> Local Scope / function scope:
+    - it can only be accessed within a function.
+
+
+            let a = "hello";
+
+            function greet() {
+                let b = "World"
+                console.log(a + b);    // helloWorld
+            }
+
+            greet();
+            console.log(a + b);    // Uncaught ReferenceError: b is not defined" -> because, b is a local variable, can't be accessed outside of the function.
+
+
+-> Block Scope:
+
+            let a = 'Hello';   // global variable
+
+            function greet() {
+                let b = 'World';    // local variable
+                console.log(a + b);
+
+                if (b == 'World') {
+                    let c = 'hello';    // block scope variable
+                    console.log(a + b + c);
+                }
+                console.log(a + b + c);     // c cannot be accessed 
+            }
+
+            greet();
+
+
+-> Lexical Scope:
+    - A lexical scope in JavaScript means that a variable defined outside a function can be accessible inside another function 
+      defined after the variable declaration. 
+
+---------------------------------------------------------------------------------------------------------------------
+Closures
+
+-> Before you learn about closures, we need to understand two concepts:
+    - Nested Function :  a function can also contain another function.
+    - Returning a function: In JavaScript, you can also return a function within a function.
+
+-> Closure helps in the data privacy of the program.
+-> Closure provides access to the outer scope of a function from inside the inner function, even after the outer function has closed. 
+
+
+            function greet() {
+                let name = 'John';     // variable defined outside the inner function
+
+                function displayName() {
+                    return 'Hi' + ' ' + name;
+                }
+
+                return displayName;
+            }
+
+            const g1 = greet();
+            console.log(g1);     // returns the function definition
+            console.log(g1());   // returns the value -> Hi John
+
+---------------------------------------------------------------------------------------------------------------------
+this keyword
+
+-> this keyword refers to the object where it is called.
+
+-> Inside Global Scope
+    - When this is used alone, this refers to the global object (window object in browsers).
+    - this.name is the same as window.name.
+
+            let a = this;
+            console.log(a);     // Window {}
+
+            this.name = 'Sarah';
+            console.log(window.name);   // Sarah
+
+
+-> Inside Function
+    - When this is used in a function, this refers to the global object (window object in browsers).
+
+            function greet() {
+                console.log(this);
+            }
+
+            greet();     // Window {}
+
+
+-> Inside Constructor Function
+    - In JavaScript, constructor functions are used to create objects. 
+    - When a function is used as a constructor function, this refers to the object inside which it is used.
+
+            function Person() {
+                this.name = 'Jack';
+                console.log(this);      // person object  -> { name: "Jack" }
+                console.log(this.name);     // John
+            }
+
+            let person1 = new Person();
+            console.log(person1.name);      // John
+
+
+-> Inside Object Method
+    - When this is used inside an object's method, this refers to the object itself.
+
+            const person = {
+                name : 'Jack',
+                age: 25,
+                greet() {
+                    console.log(this);     // person object -> {name: "Jack", age: 25, greet: ƒ}
+                    console.log(this.name);     // John
+                }
+            }
+
+            person.greet();
+            
+
+-> Inside Inner Function
+    - When you access this inside an inner function (inside a method), this refers to the global object.
+
+            const person = {
+                name : 'Jack',
+                age: 25,
+                greet() {
+                    console.log(this);          // {name: "Jack", age ...}
+                    console.log(this.age);      // 25
+
+                    function innerFunc() {
+                        console.log(this);       // Window { ... }
+                        console.log(this.age);    // undefined 
+                    }
+
+                    innerFunc();
+
+                }
+            }
+
+            person.greet();
+
+
+-> Inside Arrow Function
+    - Inside the arrow function, this refers to the parent scope.
+    - You can also use the arrow function to solve the issue of having undefined when using a function inside a method 
+
+            const greet = () => {
+                console.log(this);
+            }
+            greet();       // Window {...}
+
+        ------------------------------------
+            const greet = {
+                name: 'Jack',
+
+                sayHi () {
+                    let hi = () => console.log(this.name);
+                    hi();
+                }
+            }
+
+            greet.sayHi();      // Jack
+
+
+-> Inside Function with Strict Mode
+    - When this is used in a function with strict mode, this is undefined.
+    - When using this inside a function with strict mode, you can use JavaScript Function call().
+
+            'use strict';
+            this.name = 'Jack';
+
+            function greet() {
+                console.log(this.name);     // Cannot read properties of undefined (reading 'name')"
+            }
+
+            greet();            // Error - undefined
+            greet.call(this);   // Jack
+
+---------------------------------------------------------------------------------------------------------------------
+'use strict';
+
+-> In JavaScript, 'use strict'; states that the code should be executed in 'strict mode'. 
+-> This makes it easier to write good and secure JS code.
+-> You need to declare strict mode at the beginning of the program. If you declare strict mode below some code, it won't work.
+-> Strict mode doesn't apply to block statements with {} braces.
+
+-> Strict Mode in Variable
+    - In strict mode, using a variable without declaring it throws an error.
+
+            "use strict";
+
+            console.log("some code");
+            x = 21;       
+            console.log(x);     // Uncaught ReferenceError: x is not defined"
+
+
+-> Strict Mode in Function
+    - You can also use strict mode inside a function. 
+
+            myVariable = 9;
+            console.log(myVariable);    // 9
+
+            function hello() {
+                'use strict';
+                string = 'hello';       // Uncaught ReferenceError: string is not defined"
+            }
+
+            hello();
+
+
+-> Things Not Allowed in Strict Mode
+
+    - Undeclared variable is not allowed.
+
+            'use strict';
+            a = 'hello';    // throws an error
+
+
+    - Undeclared objects are not allowed.
+
+            'use strict';
+            person = {name: 'Carla', age: 25}; // throws an error
+
+
+    - Deleting an object is not allowed.
+
+            'use strict';
+            let person = {name: 'Carla'};
+            delete person; // throws an error
+
+
+    - Duplicating a parameter name is not allowed.
+
+            "use strict";
+            function hello(p1, p1) { 
+                console.log('hello');       // throws an error
+            };     
+            hello();
+
+
+    - Assigning to a non-writable property is not allowed.
+
+            'use strict';
+            let obj1 = {};
+            Object.defineProperty(obj1, 'x', { value: 42, writable: false });
+
+            // assignment to a non-writable property
+            obj1.x = 9;     // throws an error
+
+
+    - Assigning to a getter-only property is not allowed.
+
+            'use strict';
+            let obj2 = { get x() { return 17; } };
+
+            // assignment to a getter-only property
+            obj2.x = 5;     // throws an error
+
+
+    - Assigning to a new property on a non-extensible object is not allowed.
+
+            'use strict';
+            let obj = {};
+            Object.preventExtensions(obj);
+
+            // Assignment to a new property on a non-extensible object
+            obj.newValue = 'new value'; // throws an error
+
+    - Octal syntax is not allowed.
+
+            'use strict';
+            let a = 010; // throws an error
+
+    - The variable name arguments and eval are not allowed.
+
+            'use strict';
+            let arguments = 'hello'; // throws an error
+            let eval = 44;
+
+    - You cannot also use these reserved keywords in strict mode.
+
+            implements, interface, let, package, private, protected, public, static, yield.
+
+---------------------------------------------------------------------------------------------------------------------
+PopUp Boxes
+
+-> In Javascript, popup boxes are used to display the message or notification to the user. 
+
+    - alert() : An alert dialog box is mostly used to inform or alert the user by displaying some messages in a small dialogue box. 
+
+            function showAlert() {
+                alert("Hi, this is an Alert box");
+            }
+
+
+    - confirm() : A confirmation box is used to let the user make a choice. When Javascript pops up a confirm box, 
+                the user will have to click either "OK" or "Cancel" to proceed to the next step.
+
+            function isConfirmed() {
+                let conVal = confirm("Are you ready to confirm?");
+            }
+            isConfirmed();
+
+
+    - prompt() : Javascript Prompt Box can be used when we want to get some user input. 
+                 When Javascript displays a prompt box, the user will see a popup box with an input field and 
+                 buttons "OK" or "Cancel" to proceed after entering an input value.
+
+            function promptUser() {
+                let userInput = prompt("Hi, What's your name?", "Usha");
+            }
+            promptUser();
+
+---------------------------------------------------------------------------------------------------------------------
+Console Object
+
+-> The console object provides access to the browser's debugging console.
+-> It is a property of the window object.
+-> The console object is accessed with:
+        window.console or just console
+
+-> Console Object methods
+
+        assert() : Writes an error message to the console if a assertion is false.
+
+        clear()	: Clears the console.
+
+        count()	: Logs the number of times that this particular call to count() has been called.
+
+        error()	: Outputs an error message to the console.
+
+        group()	: Creates a new inline group in the console. This indents following console messages by an additional level, 
+                 until console.groupEnd() is called.
+
+        groupCollapsed() : Creates a new inline group in the console. However, the new group is created collapsed. 
+                           The user will need to use the disclosure button to expand it.
+
+        groupEnd() : Exits the current inline group in the console.
+
+        info() : Outputs an informational message to the console.
+
+        log() : Outputs a message to the console.
+
+        table()	: Displays tabular data as a table.
+
+        time() : Starts a timer (can track how long an operation takes).
+
+        timeEnd() : Stops a timer that was previously started by console.time().
+
+        trace() : Outputs a stack trace to the console.
+
+        warn() : Outputs a warning message to the console.
+
+---------------------------------------------------------------------------------------------------------------------
+Diff between parameters and arguements
+
+-> Parameter 
+    - A parameter is a variable defined by a method, that receives a value when the method is called.
+
+-> Arguments 
+    - An argument is a value, that is passed to a method when it is invoked.
+
+
+            function addTwo(number) {
+                return number + 2;
+            }
+            addTwo(4);
+
+-> In the above example:
+    - function is function keyword.
+    - addTwo is the name of the function.
+    - number is the parameter.
+    - return number + 2; is the function body between two curly braces.
+    - addTwo(4); is function invocation.
+    - 4 is an argument.
+
+---------------------------------------------------------------------------------------------------------------------
+IIFE
+
+-> An IIFE is Immediately Invoked Function Expression
+-> It is a JavaScript function that runs as soon as it is defined.
+
+---------------------------------------------------------------------------------------------------------------------
+Browser Storages
+
+    - Local Storage
+    - Session Storage  
+    - Cookies
+
+-> Local Storage 
+    - The localStorage stores the data with no expiration date. 
+    - It is not session based, need to be deleted via programatically.
+    - The data will not be deleted when the browser is closed, and will be available the next day, week, or year.
+    - It can store 5Mb to 10Mb data.
+    - Client side reading only.
+
+    - Syntax : 
+
+        localStorage.setItem('user', 'Usha');
+
+        const cat = localStorage.getItem('user');
+
+        localStorage.removeItem('user');
+
+        localStorage.clear();
+
+
+-> Session Storage
+    - The sessionStorage is equal to the localStorage, except that it stores the data for only one session. 
+    - The data is deleted when the user closes the specific browser tab.
+    - It can store 5Mb data.
+    - Client side reading only.
+
+    - Syntax : 
+
+        sessionStorage.setItem('user', 'Usha');
+
+        let data = sessionStorage.getItem('user');
+
+        sessionStorage.removeItem('user');
+
+        sessionStorage.clear();
+ 
+
+-> Cookies
+    - By default, The data stored in the Cookie gets expired when the page refresh.
+    - Cookies are used to store sensitive information.
+    - We can also set expiry date to the cookie.
+    - Can store only 4Kb data.
+    - Server and client side reading.
+
+    - Syntax : 
+
+---------------------------------------------------------------------------------------------------------------------
+Iterations
+
