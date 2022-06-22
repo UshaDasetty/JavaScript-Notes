@@ -36,6 +36,8 @@ What are Routes?
 What are Endpoints? 
 libuv
 What is Authentication and Autherization?
+when we use req.params.id ?
+
 ************************************************************************************************
 https://nodejs.dev/learn
 
@@ -511,5 +513,11 @@ What is Authentication and Autherization?
 
 Authentication: who you are 
 Autherization: what you can do
+
+-----------------------------------------------------------------------------------------------
+when we use req.params.id ?
+
+-> req.params.id is used, when we update or delete an item using item id.
+-> id should be passed in the url.
 
 -----------------------------------------------------------------------------------------------

@@ -1,0 +1,199 @@
+What is ReactJS?
+What are the features of ReactJS?
+What is JSX?
+Can JSX be directly read by the Web Browsers?
+Components in ReactJS?
+What do you understand by Virtual DOM?
+How do you Create a React app?
+Lifecycle of components?
+Explain Lists in React?
+
+*****************************************************************************************************************
+What is ReactJS?
+
+-> A JavaScript library for building user interfaces.
+-> It is developed by Facebook.
+-> It’s an open-source and component-based framework.
+-> React also allows us to create reusable UI components.
+-> It is responsible for creating the application’s view layer.  
+-> React is famous for building single-page applications and mobile apps.
+-> React first deployed on Facebook’s newsfeed in 2011 and on Instagram.com in 2012.
+
+-------------------------------------------------------------------------------------------------------------------
+What are the features of ReactJS?
+https://www.geeksforgeeks.org/what-are-the-features-of-reactjs/
+
+-> JSX (JavaScript Syntax Extension)
+-> Virtual DOM
+-> One-way data binding
+-> Performance
+-> Extensions
+-> Conditional statements
+-> Components
+-> Simplicity
+
+-------------------------------------------------------------------------------------------------------------------
+What is JSX?
+
+-> JSX stands for JavaScript XML.
+-> It is Syntax extension for JavaScript. 
+-> It is used to write HTML code inside the JavaScript file.
+
+-------------------------------------------------------------------------------------------------------------------
+Can JSX be directly read by the Web Browsers?
+
+-> Web Browsers cannot read JSX directly. It is because, they can only read regular JS Objects, but JSX is not a regular JavaScript object.
+-> For a web browser to read a JSX file, the file needs to be transformed into regular JavaScript object. For this Babel is Used.
+
+-------------------------------------------------------------------------------------------------------------------
+Components in ReactJS?
+
+-> Components in React are used to split the UI into independent and reusable.
+-> They are reusable and nested inside other components.
+-> Types of Components are:
+        1. Stateless functional components(Functional Components)
+        2. Statefull functional components(Class Components)
+
+-> Functional components: 
+    - In functional components the properties(props) are passed through JavaScript functions to other components.
+    - Functional components are created by using the function keyword.
+
+
+            import React from 'react'
+
+            function functionalComponent() {
+            return (
+                <div>
+                    <h1>This is a functionalComponent</h1>
+                </div>
+            )
+            }
+
+            export default functionalComponent
+
+
+-> Class components:
+    - In class components the properties(props) are passed through ES6 Class to other components.
+    - class components the created by using class keyword.
+
+
+            import React, { Component } from 'react'
+
+            class classComponent extends Component {
+            render() {
+                return (
+                <div>
+                    <h1>This is a class Component</h1>
+                </div>
+                )
+            }
+            }
+
+            export default classComponent
+
+-------------------------------------------------------------------------------------------------------------------
+What do you understand by Virtual DOM?
+
+
+-------------------------------------------------------------------------------------------------------------------
+How do you Create a React app?
+
+-> npx create-react-app app-name 
+-> cd app-name 
+-> npm start
+
+-> It creates the following folders
+    - node_modules
+    - public
+    - src
+    - .gitignore file
+    - package-lock.json file
+    - package.json file
+    - README.md file
+
+-------------------------------------------------------------------------------------------------------------------
+Lifecycle of components?
+https://dev.to/aditya278/react-components-lifecycle-methods-wth-are-they-2lh5
+
+-> A React component will go through three stages of its life.
+
+    - Mounting : Mounting represents the rendering of the React component in the given DOM node.
+
+    - Updating : Updating represents the re-rendering of the React component in the given DOM node during state changes / updates.
+
+    - Unmounting : Unmounting represents the removal of the React component.
+
+-> There is another phase called as Error Handling phase, it contains two methods: 
+     1. getDerivedStateFromError() 
+     2. componentDidCatch().
+
+
+-> Mounting:
+     1. constructor()
+     2. getDerivedStateFromProps()
+     3. render()
+     4. componentDidMount()
+
+
+-> Updating:
+     1. static getDerivedStateFromProps()
+     2. shouldComponentUpdate()
+     3. render()
+     4. getSnapshotBeforeUpdate()
+     5. componentDidUpdate()
+
+
+-> Unmounting:
+     1. componentWillUnmount()
+
+-------------------------------------------------------------------------------------------------------------------
+Lists in ReactJS
+
+-> Lists are used to display data in an ordered format and mainly used to display menus on websites.
+-> The map() function is used for traversing the lists.
+
+
+            import React from 'react'
+
+            const Lists = () => {
+
+                const menuItems = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+                const ListedMenu = menuItems.map(menu => {
+                    return <li>{menu}</li>;
+                })
+
+                return (
+                    <>
+                        <h1>This is List Component</h1>
+                        <ul>{ListedMenu}</ul>
+                    </>
+                )
+            }
+
+            export default Lists
+
+-------------------------------------------------------------------------------------------------------------------
+keys in ReactJS
+
+-> A key is a unique identifier.
+-> In React, it is used to identify which items have changed, updated, or deleted from the Lists.
+-> Keys are given to the elements inside the array, to give the elements a stable identity.
+
+-------------------------------------------------------------------------------------------------------------------
+Styling React Components
+
+-> There are different ways to style React components. 
+    - CSS StyleSheets
+    - Inline Stylings
+    - CSS module
+    - Styled Components
+    - Sass & SCSS
+
+-------------------------------------------------------------------------------------------------------------------
+ReactJS fragments
+
+-> Fragments allows to wrap list of child elements or child components.
+-> The main reason to use Fragment tag is:
+    - It makes the execution of code faster as compared to the div tag.
+    - It takes less memory.
+-------------------------------------------------------------------------------------------------------------------  
