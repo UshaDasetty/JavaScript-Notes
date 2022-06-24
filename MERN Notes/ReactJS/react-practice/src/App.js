@@ -14,6 +14,11 @@ import StyledComponent from './components/Stylings/StyledComponent'
 import FunctionalPropsComponent from './components/Props/FunctionalProps'
 import ClassPropsComponent from './components/Props/ClassProps'
 import StateComponent from './components/State/State'
+import UseStateComponent from './components/Hooks/useState/useState'
+import UseEffectComponent from './components/Hooks/useEffect/useEffect'
+import UseContextComponent from './components/Hooks/useContext/useContext'
+import UseRefComponent from './components/Hooks/useRef/useRef'
+import UseReducerComponent from './components/Hooks/useReducer/useReducer'
 
 
 function App() {
@@ -34,6 +39,11 @@ function App() {
       <FunctionalPropsComponent/><hr/>
       <ClassPropsComponent/><hr/>
       <StateComponent/><hr/>
+      <UseStateComponent/><hr/>
+      <UseEffectComponent/><hr/>
+      <UseContextComponent /><hr/>
+      <UseRefComponent /><hr/>
+      <UseReducerComponent /><hr/>
     </>
   );
 }
