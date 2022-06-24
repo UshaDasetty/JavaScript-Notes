@@ -7,6 +7,15 @@ What do you understand by Virtual DOM?
 How do you Create a React app?
 Lifecycle of components?
 Explain Lists in React?
+keys in ReactJS
+Styling React Components.
+ReactJS fragments.
+Props and State in ReactJS.
+Hooks in ReactJS.
+Higher Order Components(HOC) in ReactJS.
+Form Handling in ReactJS.
+Making HTTP requests in React.
+React Router.
 
 *****************************************************************************************************************
 What is ReactJS?
@@ -57,6 +66,8 @@ Components in ReactJS?
 -> Functional components: 
     - In functional components the properties(props) are passed through JavaScript functions to other components.
     - Functional components are created by using the function keyword.
+    - Can't use state in Function Component, but it allows us to use React Hooks.
+    - We prefer to use arrow function components.
 
 
             import React from 'react'
@@ -75,6 +86,7 @@ Components in ReactJS?
 -> Class components:
     - In class components the properties(props) are passed through ES6 Class to other components.
     - class components the created by using class keyword.
+    - Can't use React Hooks inside class components.
 
 
             import React, { Component } from 'react'
@@ -196,4 +208,184 @@ ReactJS fragments
 -> The main reason to use Fragment tag is:
     - It makes the execution of code faster as compared to the div tag.
     - It takes less memory.
--------------------------------------------------------------------------------------------------------------------  
+
+------------------------------------------------------------------------------------------------------------------- 
+Props and State in ReactJS
+
+-> Props:
+    - React allows us to pass information to a Component (from a parent to a child component) using props (short for properties).
+    - Props is basically an object which is available for all the React components.
+    - Props are read only and cannot be modified by the component, They are immutable.
+
+-> State:
+    - The State of a component is an object that holds information that changes over the lifetime of the component.
+    - States are used in Class Component and Functional Component with the use of React Hooks.
+    - State must have some initial state(value).
+    - We define the State in constructor of the component's class.
+    - we update state using setState() method.
+
+-> Difference between the State and Props:
+
+                 State                                            Props
+_________________________________________________________________________________________________________________
+1. State is an observable object, that is used to          1. Props are immutable, props cannot be changed, once
+   hold data, that may change over time.                      it is set.
+
+2. State should be used in Class Component and             2. Props don't have the limitation.
+   Functional Component with the use of React Hooks.
+
+3. State is generally updated by event handlers.           3. Props are set by Parent Component.
+
+4. State is managed within the Component.                  4. Props gets passed to the Component.
+
+-------------------------------------------------------------------------------------------------------------------
+Hooks in ReactJS
+
+-> Hooks:
+    - Hooks are the new feature introduced in the React 16.8 version.
+    - It allows you to use state and other React features without writing a class.
+    - Hooks are the functions which "hook into" React state and lifecycle features from function components.
+    - It does not work inside classes.
+
+-> When to use Hooks:
+    - If you write a function component, and then you want to add some state to it, previously you do this by converting it to a class. 
+      But, now you can do it by using a Hook inside the existing function component.
+    
+-> Rules of Hooks:
+
+    1. Only call Hooks at the top level:
+        - Do not call Hooks inside loops, conditions, or nested functions. 
+
+    2. Only call Hooks from React functions:
+        - You cannot call Hooks from regular JavaScript functions. Instead, you can call Hooks from React function components.
+        - Hooks can also be called from custom Hooks.
+
+-> Types of Hooks
+
+        1. useState() :
+
+            - The React useState() Hook allows us to track the state in a function component. 
+            - To use useState() Hook, first it should be imported into the component.
+                    import {useState} from "react";
+
+            - useState accepts an initial state and returns two values:
+                    - The current state
+                    - A function that update the state.
+
+
+        2. useEffect() : 
+
+            - The useEffect() Hook allows to perform side effects in components.
+            - To use the useEffect() Hook, first it should be imported into the component.
+                    import {useEffect} from "react"
+
+            - useEffect() accepts two arguments, but second is optional.
+                    useEffect(<function>,<dependency>)
+
+            - No dependency passed, Runs on every render
+                    useEffect(()=> {
+
+                    });
+
+            - An Empty array, Runs only on first render
+                    useEffect(()=> {
+
+                    }, []);
+
+            - Props or state values, Runs on first render and anytime any dependency value cahnges.
+                    useEffect(()=> {
+
+                    }, [props, state]);
+
+
+        3. useContext() :
+
+            - React Context is a way to manage state globally.
+            - It is used together with the useState() Hook to share state between the deeply nested components more easily,
+                than using useState() alone.
+
+            - To create a context, createContext() should be imported and initialize it:
+                    import {createContext, useContext} from 'react'
+                    const UserContext = createContext();
+
+
+        4. useRef() :
+
+            - Allows to persist values between renders.
+            - Used to store mutable value that does not cause re-render when updated.
+            - Used to access DOM element directly.
+            - To use useRef Hook, first it should be imported into the component.
+                    import {useRef} from 'react';
+
+
+        5. useReducer() :
+
+            - The useReducer is similar to useState Hook. It allows for custom state logic.
+            - Keep tracking of multiple pieces of state, that rely on complex logic useReducer is useful.
+            - It accepts two arguments:
+                    useReducer(<reducer>,<initial state>)
+
+
+        6. useCallback() :
+
+            - Returns memorized callback function.
+            - Runs only when one of its dependency updates.
+            - To use useCallback() Hook, first it should be imported into the component.
+                    import {useCallback} from 'react';
+
+
+        7. useMemo() : 
+            - The useMemo hook returns a memorized value. 
+            - The useMemo hook only runs when one of its dependency updates.
+            - To use useMemo() Hook, first it should be imported into the component.
+                    import {useMemo} from 'react';
+
+
+-> React Custom Hook:
+
+    - Hooks are reusable functions.
+    - When component Logic needs to be used by multiple components, then the logic is extracted to custom hook.
+    - Custom hook start with 'use'. For example, useFetch()
+
+
+-------------------------------------------------------------------------------------------------------------------
+Higher Order Components(HOC) in ReactJS:
+
+-> A Higher Order Component is a function that takes a component and returns a new component.
+        const EnhancedComponent = HigherOrderComponent(WrappedComponent);
+
+-> Higher Order Components are the advanced method of reusing the component functionality logic.
+
+-> Use od Higher Order Components:
+    - Easy to handle
+    - Get rid of copying same logic in every component.
+    - Makes code more readable.
+
+-------------------------------------------------------------------------------------------------------------------
+Form Handling in ReactJS:
+
+-> Form Handling is basically about how we handle data, when it changes value or submitting data.
+-> In HTML form data is usually handled by the DOM.
+-> In ReactJs form data is handled by the component, when the data is handled by the component all the data is stored in the 
+    component state.
+
+-------------------------------------------------------------------------------------------------------------------
+Making HTTP requests in React:
+
+-> The client sends http request to the server through the browser and server sends HTML page as a response to the client.
+-> For making HTTP requests in React, we have some options:
+    - Axios
+    - XmlHttpRequest
+    - Fetch
+
+-------------------------------------------------------------------------------------------------------------------
+React Router:
+
+-> React Router is a standard library for routing in ReactJS Applications.
+-> It enables the navigation among the views of the various components in a ReactJS Application.
+-> Allows cahnging the browser URL, and keeps UI in sync with the URL.
+-> React Router is Installed via npm in ReactJS Application.
+-> React Router is installed via npm in ReactJS Application.
+        npm install react-router-dom --save
+
+-------------------------------------------------------------------------------------------------------------------
