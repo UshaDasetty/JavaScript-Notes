@@ -337,6 +337,7 @@ Hooks in ReactJS
         7. useMemo() : 
             - The useMemo hook returns a memorized value. 
             - The useMemo hook only runs when one of its dependency updates.
+            - useMemo() is used to enchance the performance, when the execution is slow.
             - To use useMemo() Hook, first it should be imported into the component.
                     import {useMemo} from 'react';
 
@@ -356,7 +357,7 @@ Higher Order Components(HOC) in ReactJS:
 
 -> Higher Order Components are the advanced method of reusing the component functionality logic.
 
--> Use od Higher Order Components:
+-> Use of Higher Order Components:
     - Easy to handle
     - Get rid of copying same logic in every component.
     - Makes code more readable.
