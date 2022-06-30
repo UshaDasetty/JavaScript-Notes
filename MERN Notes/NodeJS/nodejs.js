@@ -1,3 +1,4 @@
+/*
 What is NodeJS? 
 How NodeJS works?
 Where can we use NodeJS? 
@@ -521,3 +522,5 @@ when we use req.params.id ?
 -> id should be passed in the url.
 
 -----------------------------------------------------------------------------------------------
+
+*/
