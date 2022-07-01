@@ -53,6 +53,9 @@ NodeJs:-
 -> NodeJs is petfect for data-intesive applications as it uses an Asynchronous and Event-driven model.
 -> NodeJS runs on chrome V8 engine which converts javascript code into machine code.
 
+Data-intensive : Data-intensive computing is a class of parallel computing applications which use a data parallel approach to process 
+                 large volumes of data typically terabytes or petabytes in size and typically referred to as big data.
+
 -------------------------------------------------------------------------------------------------
 How NodeJs Work:-
 
