@@ -137,9 +137,11 @@ Mention a couple of popular libraries used in NodeJs ?
 
 -> Express
     - Express is a routing and middleware web framework that has minimal functionality of its own.
-    - An Express application is essentially a series of middleware function calls.
+    - An Express application is basically a set of middleware function calls.
 
 -> Mongoose
+
+-> Nodemon
 
 -----------------------------------------------------------------------------------------------
 What are the Pros and Cons of the NodeJS?
@@ -156,7 +158,7 @@ Cons:
 -----------------------------------------------------------------------------------------------
 What is Event-Driven Programming?
 
--> Event-Driven Programming approach uses Events to trigger various functions.
+-> Event-Driven Programming uses Events to trigger various functions.
 -> Event Can be anything like pressing a key, clicking a mouse button.
 
 -----------------------------------------------------------------------------------------------
@@ -319,7 +321,7 @@ Describe the Exit codes in NodeJs?
 
 -> exit() function. 
 -> Exit code 1 is used when unhandled fatal exceptions occur. 
--> whereas Exit code 0 is used to terminate when no more async operations are happening.
+-> whereas Exit code 0 is used to terminate, when no more async operations are happening.
 -> There are two ways that are generally used  to terminate a Node.js program:
     - process.exit() or 
     - process.exitCode variable.
@@ -349,8 +351,8 @@ http://expressjs.com/en/guide/using-middleware.html
 -> Middleware functions are functions that have access to the request object (req), the response object (res), and 
    the next middleware function in the application’s request-response cycle.
 -> The next middleware function is commonly denoted by a variable named next.
+-> next() is used to call the next middleware function.
 -> Middleware functions can perform the following tasks:
-    - Execute any code.
     - Make changes to the request and the response objects.
     - End the request-response cycle.
     - Call the next middleware function in the stack.
@@ -359,11 +361,24 @@ http://expressjs.com/en/guide/using-middleware.html
    next middleware function. Otherwise, the request will be left hanging.
 
 -> Types of Middlewares:
-    - Application-level middleware
-    - Router-level middleware
-    - Error-handling middleware
-    - Built-in middleware
+    - Application-level middleware :
+        - Bind application-level middleware to an instance of the app object by using the app.use() and app.METHOD() functions
+    
+    - Router-level middleware : 
+        - Router-level middleware works in the same way as application-level middleware, except it is bound to an instance of express.Router().
+
+    - Error-handling middleware : 
+        - Define error-handling middleware functions in the same way as other middleware functions, except with four arguments instead of three,
+            (err, req, res, next)):
+    
+    - Built-in middleware :
+        - express.static()
+        - express.json()
+        - express.urlencoded()
+    
     - Third-party middleware
+        - These third party middlewares have to install from npm.js
+        - For a partial list of third-party middleware functions that are commonly used with Express, see: http://expressjs.com/en/resources/middleware.html
 
 -----------------------------------------------------------------------------------------------
 What are the types of HTTP requests?
@@ -509,7 +524,7 @@ What are Endpoints?
 libuv
 
 -> It is important dependency in NodeJS is libuv, a C library that is used to abstract non-blocking I/O operations.
--> It provides mechanisms to handle file system, DNS, network, child processes, pipes, signal handling, polling and streaming. 
+-> It provides mechanisms to handle file system, DNS(Domain Name System), network, child processes, pipes, signal handling, polling and streaming. 
 -> It also includes a thread pool for offloading work for some things that can't be done asynchronously at the operating system level.
 
 -----------------------------------------------------------------------------------------------

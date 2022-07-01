@@ -1,3 +1,5 @@
+/*
+
 V8 Engine
 ECMA Script
 Variables 
@@ -47,6 +49,7 @@ V8 Engine:-
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------
 ECMA Script:-
+https://www.programiz.com/javascript/ES6
 
 -> European Computer Manfactures Association Script).
 -> It is also known ECMA-262.
@@ -1302,6 +1305,11 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects
 ---------------------------------------------------------------------------------------------------------------------
 Outputs
 
+-> console.log()
+-> document.write()
+-> window.alert()
+-> innerHTML
+
 ---------------------------------------------------------------------------------------------------------------------
 call(), apply() and bind() methods
 
@@ -1309,3 +1317,5 @@ call(), apply() and bind() methods
 prototype
 
 ---------------------------------------------------------------------------------------------------------------------
+
+*/
