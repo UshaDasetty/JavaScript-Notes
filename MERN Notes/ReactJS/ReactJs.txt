@@ -292,7 +292,7 @@ Hooks in ReactJS
 
                     }, []);
 
-            - Props or state values, Runs on first render and anytime any dependency value cahnges.
+            - Props or state values, Runs on first render and anytime any dependency value changes.
                     useEffect(()=> {
 
                     }, [props, state]);
@@ -304,7 +304,7 @@ Hooks in ReactJS
             - It is used together with the useState() Hook to share state between the deeply nested components more easily,
                 than using useState() alone.
 
-            - To create a context, createContext() should be imported and initialize it:
+            - To create a context, createContext() should be imported and initialise it:
                     import {createContext, useContext} from 'react'
                     const UserContext = createContext();
 
@@ -335,9 +335,9 @@ Hooks in ReactJS
 
 
         7. useMemo() : 
-            - The useMemo hook returns a memorized value. 
+            - The useMemo hook returns a memorised value. 
             - The useMemo hook only runs when one of its dependency updates.
-            - useMemo() is used to enchance the performance, when the execution is slow.
+            - useMemo() is used to enhance the performance, when the execution is slow.
             - To use useMemo() Hook, first it should be imported into the component.
                     import {useMemo} from 'react';
 
@@ -384,7 +384,7 @@ React Router:
 
 -> React Router is a standard library for routing in ReactJS Applications.
 -> It enables the navigation among the views of the various components in a ReactJS Application.
--> Allows cahnging the browser URL, and keeps UI in sync with the URL.
+-> Allows changing the browser URL, and keeps UI in sync with the URL.
 -> React Router is Installed via npm in ReactJS Application.
 -> React Router is installed via npm in ReactJS Application.
         npm install react-router-dom --save
