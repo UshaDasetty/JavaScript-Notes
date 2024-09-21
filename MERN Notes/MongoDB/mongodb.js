@@ -285,21 +285,129 @@ ________________________________________________________________________________
 
 _______________________________________________________________________________________________________________________________________________________________________________________________________________________
 
-11) 
+11) Schemas in MongoDB
+----------------------
+
+-> In MongoDB, schemas are not enforced at the database level, as it is a NoSQL database and uses a flexible schema design. However, a schema can still be thought of as the 
+   structure or blueprint of how data is organized within a collection.
+
+-> Below are the examples that every document is different in the same collection. It means having no Schema.
+
+    Product Collection (very different documents):
+    ...........................................
+
+    {
+     "title": "Book",
+     "price": 12.99
+    }
 
 
+    {
+     "name": "Bottle",
+     "available": true
+    }
 
 
+    Product Collection (Extra Data):
+    ...........................................
+
+    {
+     "title": "Book",
+     "price": 12.99
+    }
 
 
+    {
+     "name": "Bottle",
+     "price": 5.99
+     "available": true
+    }
 
 
+    Product Collection (Full Equality):
+    ...........................................
+
+    {
+     "title": "Book",
+     "price": 12.99
+    }
 
 
+    {
+     "title": "Bottle",
+     "price": 5.99
+    }
 
 
+-> While MongoDB allows documents within a collection to have varying structures, many applications define schemas to ensure consistency and data integrity. 
+   These schemas typically define:
+ 
+    1. Fields: The expected key names.
+
+    2. Data Types: The expected types for each field (e.g., String, Number, Date).
+
+    3. Validation Rules: Rules that data must follow, such as required fields, minimum or maximum values.
+
+    4. Indexes: To optimize queries.
+
+-> In many cases, libraries such as Mongoose (used with Node.js) are used to define schemas for MongoDB collections, enforcing some level of structure and validation at 
+   the application level.
+
+    example:-
+
+    const mongoose = require('mongoose');
+
+    const userSchema = new mongoose.Schema({
+      name: { type: String, required: true },
+      age: { type: Number, required: true },
+      email: { type: String, required: true },
+    });
+
+    const User = mongoose.model('User', userSchema);
 
 
+    In this example, a user schema is defined with fields like name, age, and email, each having its own type and validation.
+
+_______________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+12) Data Types in MongoDB
+-------------------------
+
+-> MongoDB supports various data types to store different kinds of values in documents. Here are some common MongoDB data types:
+
+    1. String: Stores textual data (UTF-8).
+
+    2. Integer: Stores numerical values (32-bit or 64-bit depending on the platform).
+
+    3. Double: Stores floating-point values.
+
+    4. Boolean: Stores true or false.
+
+    5. Array: Stores arrays of values, including other arrays.
+
+    6. Object: Stores embedded documents (key-value pairs).
+
+    7. ObjectId: A unique 12-byte identifier used for primary keys in MongoDB.
+
+    8. Date: Stores dates or times, including both date and time in UTC format.
+
+    9. Binary: Stores binary data, often used for storing files like images.
+
+    10. Null: Represents null values.
+
+    11. Regex: Stores regular expressions.
+
+    12. Timestamp: Special type for storing a timestamp.
+
+    13. Decimal128: Stores high-precision decimal values.
+
+    14. Min/Max Keys: Internal types used to compare values against the lowest and highest BSON values.
+
+-> These data types help structure data in a flexible, schema-less way, making MongoDB highly adaptable to different types of applications.
+
+_______________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+13) 
 
 
 
