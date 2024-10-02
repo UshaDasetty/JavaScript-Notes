@@ -1596,22 +1596,50 @@ Link: https://www.mongodb.com/docs/manual/reference/operator/query/
 
     -> $or Operation:
        ______________
+        
+        -> Matches documents that satisfy at least one of the specified conditions.
+
+        -> db.tvShows.find({$or: [{"rating.average": {$lt: 5}},{"rating.average": {$gt: 9}}]}).pretty()    -> Returns documents where rating.average is less than 5 or 
+                                                                                                              rating.average is greater than 9.
+
+        -> db.users.find({$or: [{age: {$lt: 18}},{city: "Los Angeles"}]})    -> Matches documents where the age is less than 18 or the city is “Los Angeles”.
+
+
+    -> $nor Operator:
+       ______________
+        
+        -> Matches documents that fail to satisfy all of the specified conditions.
+
+        -> db.tvShows.find({$nor: [{"rating.average": {$lt: 9.3}},{"rating.average": {$gt: 9.4}}]}).pretty()    -> Matches documents where the age is not greater than 18 and 
+                                                                                                                   the city is not “Chicago”.
+
+        -> db.collection.find({$nor: [{age: {$gt: 18}},{city: "Chicago"}]})      -> Matches documents where the age is not greater than 18 and the city is not “Chicago”.
+
+
+    -> $and Operator:
+       ______________
+
+        -> Matches documents that satisfy all the specified conditions.
+
+        -> db.tvShows.find({$and: [{"rating.average": {$gt: 5}},{"genres": "Drama"}]}).pretty()     -> Returns all documents where rating.average is greater than 5 and 
+                                                                                                        genres is Drama.
+
+        -> db.users.find({$and: [{age: {$gt: 18}}, {city: "New York"}]})    -> Matches documents where the age is greater than 18 and the city is “New York”.
 
         -> 
 
 
+    -> $not Operator:
+       ______________
+
+        ->  Inverts the effect of a query expression, returning documents that do not match the specified condition.
+
+        -> db.collection.find({age: {$not: {$gt: 25}}})      -> Matches documents where the age is not greater than 25.
 
 
+    _________________________________________________________________________________________________________
 
-
-
-
-
-
-
-
-
-
+    iii) 
 
 
 
