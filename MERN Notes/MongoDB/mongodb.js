@@ -1639,7 +1639,161 @@ Link: https://www.mongodb.com/docs/manual/reference/operator/query/
 
     _________________________________________________________________________________________________________
 
-    iii) 
+    iii) Element Operators:
+    -----------------------
+
+    -> In MongoDB, element operators are used to query documents based on the presence or absence of a field, whether the value of a field is of a particular type, 
+       or whether the field exists at all. Here are the key element operators in MongoDB:
+
+    -> $exists Operator: 
+       _________________
+        ->  The $exists operator is used to check whether a field exists in a document.
+
+        -> db.users.find({age: {$exists: false}}).pretty()    -> It will return the documents where age field does not exist.
+
+        -> db.users.find({age: {$exists: true}}).pretty()     ->  It will return the documents where age field exist.
+
+
+    -> $type Operator:  https://www.mongodb.com/docs/manual/reference/operator/query/type/#mongodb-query-op.-type  (For more details visit this site)
+       _______________
+
+        ->   The $type operator is used to query documents where the value of a field matches a specific BSON data type.
+
+        -> db.users.find({age: {$type: 10}}).pretty()       -> It will return the documents where Data Type of age is null(10 -> represents null).
+
+        -> db.users.find({age: {$type: "int"}}).pretty()    -> It will return the documents where Data Type of age is int.
+
+
+    _________________________________________________________________________________________________________
+
+    iv) Evatuation Operators:
+    -------------------------
+
+    Link:  https://chatgpt.com/share/66ffd373-3c64-8006-8dad-9fdf4fc7194e
+
+    -> $regex Operator:
+       ________________
+
+        -> Selects documents where values match a specified regular expression.
+
+        -> db.tvShows.findOne({summary: {$regex: /musical/}})     -> It will return document where Summary is having musical word in it(regular expression - summary value).
+
+
+                {
+                  _id: ObjectId('66f51825eacc13b9cab4034b'),
+                  id: 8,
+                  url: 'http://www.tvmaze.com/shows/8/glee',
+                  name: 'Glee',
+                  type: 'Scripted',
+                  language: 'English',
+                  genres: [ 'Drama', 'Music', 'Romance' ],
+                  status: 'Ended',
+                  runtime: 60,
+                  premiered: '2009-05-19',
+                  officialSite: 'http://www.fox.com/glee',
+                  schedule: { time: '21:00', days: [ 'Tuesday' ] },
+                  rating: { average: 6.7 },
+                  weight: 71,
+                  network: {
+                    id: 4,
+                    name: 'FOX',
+                    country: { name: 'United States', code: 'US', timezone: 'America/New_York' }
+                  },
+                  webChannel: null,
+                  externals: { tvrage: 21704, thetvdb: 83610, imdb: 'tt1327801' },
+                  image: {
+                    medium: 'http://static.tvmaze.com/uploads/images/medium_portrait/0/73.jpg',
+                    original: 'http://static.tvmaze.com/uploads/images/original_untouched/0/73.jpg'
+                  },
+                  summary: '<p><b>Glee </b>is a musical comedy about a group of ambitious and talented young adults in search of strength, acceptance and, ultimately, their voice.</p>',
+                  updated: 1536145055,
+                  _links: {
+                    self: { href: 'http://api.tvmaze.com/shows/8' },
+                    previousepisode: { href: 'http://api.tvmaze.com/episodes/142185' }
+                  }
+                }
+
+        
+        -> db.users.find({name: {$regex: /a/}})     -> It will return documents where name is having letter a.
+
+        -> db.users.find({name: {$regex: /^a/}})    -> It will return documents where name starts with letter a.
+
+        -> db.users.find({name: {$regex: /a$/}})    -> It will return documents where name ends with letter a.
+
+        -> db.employees.find({email: {$regex: /gmail\.com$/}})     -> It will return documents where email ends with gmail.com
+
+        -> db.tvShows.find({summary: {$regex: /ambitious/}}).pretty()    -> It will return document where Summary is having ambitious word in it(regular expression - summary value).
+
+        -> few more examples left 
+
+
+    -> $expr Operator:
+       _______________
+
+        -> Allows the use of aggregation expressions within the query language.
+
+        -> db.monthlyBudget.find({$expr: {$gt: ["$spent", "$budget"]}})      -> to find documents where the spent amount exceeds the budget.
+
+        -> db.orders.find({$expr: {$gt: ["$total","$discounted"]}})      -> Finds documents where the total field is greater than the discounted field.
+
+        -> db.collection.find({$expr: {$gt: ["$quantity", "$minQuantity"]}})    -> Finds documents where the quantity field is greater than the minQuantity field.
+
+        -> db.employees.find({$expr: {$gt: ["$salary", "$bonus"]}})     -> Finds all employees whose salary is greater than their bonus.
+
+        -> db.sales.find({$expr: {$gt: [{$add: ["$price", "$tax"]}, "$totalCost"]}})    ->  Finds documents where the sum of price and tax is greater than the totalCost.
+
+        -> db.employees.find({$expr: {$and: [{$gt: ["$age", 30]}, {$gte: ["$experience", 5]}]}})    -> Finds employees whose age is greater than 30 and whose experience is 
+                                                                                                        greater than or equal to 5 years.
+
+        -> db.events.find({$expr: {$gt: [{$subtract: ["$endDate", "$startDate"] }, 7 * 24 * 60 * 60 * 1000]}})      -> Finds events where the difference between endDate and 
+                                                                                                                        startDate is greater than 7 days.
+
+
+        -> db.products.find({$expr: {$or: [{$gt: ["$price", 500] }, { $gt: ["$discount", 20]}]}})       -> Finds all products where either the price is greater than 500 or 
+                                                                                                            the discount is greater than 20%.
+
+        -> db.servers.find({$expr: {$gt: [{$divide: ["$usedStorage", "$totalStorage"]}, 0.8]}})     -> Finds documents where the percentage of usedStorage compared to 
+                                                                                                        totalStorage is greater than 80%.
+
+        -> db.products.find({$expr: {$lt: [{ $ifNull: ["$discountedPrice", "$regularPrice"] }, "$regularPrice"]}})      -> Finds documents where the discountedPrice is null 
+                                                                                                                            or less than the regularPrice.
+
+        -> db.orders.find({$expr: {$in: ["$status", ["shipped", "delivered"]]}})    -> Find orders where the status is either “shipped” or “delivered”.
+
+
+    -> $mod Operator:
+       ______________
+
+        -> Selects documents where the value of a field divided by a divisor has the specified remainder.
+
+        -> db.numbers.find({number: {$mod: [2, 1]}})    -> Find documents where the number field is odd (i.e., number % 2 == 1).
+
+        -> db.numbers.find({number: { $mod: [2, 0]}})   ->  Find documents where the number field is even (i.e., number % 2 == 0).
+
+        -> db.products.find({quantity: { $mod: [5, 0]}})    -> Find all products where the quantity is divisible by 5.
+
+        -> db.events.find({day: {$mod: [7, 0]}})    -> Find events that occur on days that are divisible by 7 (e.g., the 7th, 14th, 21st, etc.).
+
+        -> db.items.find({price: {$mod: [10, 0]}})      -> Find all items where the price is divisible by 10.
+
+        -> db.years.find({$or: [{year: {$mod: [400, 0]}},{ $and: [{ year: { $mod: [100, 0] } }, { year: { $mod: [4, 0]}}]}]})   -> Find documents where the year is a leap year (i.e., year % 4 == 0, but not divisible by 100 unless also divisible by 400).
+
+        -> db.users.find({_id: {$mod: [10, 3]}})    -> Find users whose _id ends in the digit 3 (i.e., _id % 10 == 3).
+
+        -> db.events.find({month: {$mod: [2, 0]}})      -> Find events occurring in even months (i.e., month % 2 == 0).
+
+        -> db.logs.find({hour: {$mod: [3, 0]}})     -> Find logs that were created in hours divisible by 3 (e.g., 3 AM, 6 AM, etc.).
+
+        -> db.numbers.find({value: {$mod: [3, 2]}})     -> Find documents where the value leaves a remainder of 2 when divided by 3 (i.e., value % 3 == 2).
+    
+    
+    -> $where Operator:
+       ________________
+
+        -> Evaluates JavaScript expressions to match documents. This operator provides a lot of flexibility, but can be slower than other queries as it requires running 
+            JavaScript on the server.
+
+        -> 
 
 
 
@@ -1652,16 +1806,11 @@ Link: https://www.mongodb.com/docs/manual/reference/operator/query/
 
 
 
-
-
-
-
-
-
-
-
-
-
+db.products.insertMany([
+{ "_id": 1, "price": 100, "tax": 10, "totalCost": 120 },
+{ "_id": 2, "price": 80, "tax": 5, "totalCost": 85 },
+{ "_id": 3, "price": 150, "tax": 15, "totalCost": 160 }
+])
 
 
 
