@@ -1758,7 +1758,7 @@ Link: https://www.mongodb.com/docs/manual/reference/operator/query/
         -> db.products.find({$expr: {$lt: [{ $ifNull: ["$discountedPrice", "$regularPrice"] }, "$regularPrice"]}})      -> Finds documents where the discountedPrice is null 
                                                                                                                             or less than the regularPrice.
 
-        -> db.orders.find({$expr: {$in: ["$status", ["shipped", "delivered"]]}})    -> Find orders where the status is either “shipped” or “delivered”.
+        -> db.orders.find({$expr: {$in: ["$status", ["shipped", "delivered"]]}})    -> Finds orders where the status is either “shipped” or “delivered”.
 
 
     -> $mod Operator:
@@ -1766,25 +1766,25 @@ Link: https://www.mongodb.com/docs/manual/reference/operator/query/
 
         -> Selects documents where the value of a field divided by a divisor has the specified remainder.
 
-        -> db.numbers.find({number: {$mod: [2, 1]}})    -> Find documents where the number field is odd (i.e., number % 2 == 1).
+        -> db.numbers.find({number: {$mod: [2, 1]}})    -> Finds documents where the number field is odd (i.e., number % 2 == 1).
 
-        -> db.numbers.find({number: { $mod: [2, 0]}})   ->  Find documents where the number field is even (i.e., number % 2 == 0).
+        -> db.numbers.find({number: { $mod: [2, 0]}})   ->  Finds documents where the number field is even (i.e., number % 2 == 0).
 
-        -> db.products.find({quantity: { $mod: [5, 0]}})    -> Find all products where the quantity is divisible by 5.
+        -> db.products.find({quantity: { $mod: [5, 0]}})    -> Finds all products where the quantity is divisible by 5.
 
-        -> db.events.find({day: {$mod: [7, 0]}})    -> Find events that occur on days that are divisible by 7 (e.g., the 7th, 14th, 21st, etc.).
+        -> db.events.find({day: {$mod: [7, 0]}})    -> Finds events that occur on days that are divisible by 7 (e.g., the 7th, 14th, 21st, etc.).
 
-        -> db.items.find({price: {$mod: [10, 0]}})      -> Find all items where the price is divisible by 10.
+        -> db.items.find({price: {$mod: [10, 0]}})      -> Finds all items where the price is divisible by 10.
 
-        -> db.years.find({$or: [{year: {$mod: [400, 0]}},{ $and: [{ year: { $mod: [100, 0] } }, { year: { $mod: [4, 0]}}]}]})   -> Find documents where the year is a leap year (i.e., year % 4 == 0, but not divisible by 100 unless also divisible by 400).
+        -> db.years.find({$or: [{year: {$mod: [400, 0]}},{ $and: [{ year: { $mod: [100, 0] } }, { year: { $mod: [4, 0]}}]}]})   -> Finds documents where the year is a leap year (i.e., year % 4 == 0, but not divisible by 100 unless also divisible by 400).
 
-        -> db.users.find({_id: {$mod: [10, 3]}})    -> Find users whose _id ends in the digit 3 (i.e., _id % 10 == 3).
+        -> db.users.find({_id: {$mod: [10, 3]}})    -> Finds users whose _id ends in the digit 3 (i.e., _id % 10 == 3).
 
-        -> db.events.find({month: {$mod: [2, 0]}})      -> Find events occurring in even months (i.e., month % 2 == 0).
+        -> db.events.find({month: {$mod: [2, 0]}})      -> Finds events occurring in even months (i.e., month % 2 == 0).
 
-        -> db.logs.find({hour: {$mod: [3, 0]}})     -> Find logs that were created in hours divisible by 3 (e.g., 3 AM, 6 AM, etc.).
+        -> db.logs.find({hour: {$mod: [3, 0]}})     -> Finds logs that were created in hours divisible by 3 (e.g., 3 AM, 6 AM, etc.).
 
-        -> db.numbers.find({value: {$mod: [3, 2]}})     -> Find documents where the value leaves a remainder of 2 when divided by 3 (i.e., value % 3 == 2).
+        -> db.numbers.find({value: {$mod: [3, 2]}})     -> Finds documents where the value leaves a remainder of 2 when divided by 3 (i.e., value % 3 == 2).
     
     
     -> $where Operator:
@@ -1793,7 +1793,240 @@ Link: https://www.mongodb.com/docs/manual/reference/operator/query/
         -> Evaluates JavaScript expressions to match documents. This operator provides a lot of flexibility, but can be slower than other queries as it requires running 
             JavaScript on the server.
 
-        -> 
+        -> db.employees.find({$where: function() { return this.salary > this.bonus; }})     -> Find documents where the salary is greater than the bonus.
+
+        -> db.users.find({$where: function() {return this.name[0] === 'A' && this.age > 25; }})     ->  Find documents where the name starts with the letter ‘A’ and the age is greater than 25.
+
+        -> db.products.find({$where: function() {return this.tags.length > 3;}})    -> Find documents where the tags field contains more than 3 elements.
+
+
+    -> $text Operator:
+       _______________
+
+       -> The $text operator in MongoDB performs text searches on fields that have been indexed with a text index. This operator is useful for full-text search within 
+          documents, matching keywords or phrases in indexed text fields.
+
+       -> db.articles.find({$text: { $search: "database" }})    -> Search for documents containing the word “database” in any text-indexed field.
+
+       -> db.articles.find({$text: { $search: "\"full text search\"" }})    -> Search for the exact phrase “full text search” in any text-indexed field.
+
+       -> db.articles.find({$text: { $search: "database performance" }})    -> Search for documents that contain either “database” or “performance”.
+
+       -> db.articles.find({$text: { $search: "database -NoSQL" }})     -> Search for documents containing “database” but exclude those that contain “NoSQL”.
+
+       -> db.articles.find({$and: [{$text: {$search: "database"}}, { published: true }] })      -> Search for documents containing “database” and where the published field is true.
+
+       -> 
+        
+    -> $jsonSchema Operator:
+       ____________________
+
+       -> The $jsonSchema operator in MongoDB allows you to validate documents against a specified JSON Schema during queries. This is useful for ensuring that documents 
+          match certain structural and data constraints.
+
+       -> db.createCollection("posts2", {
+          validator: {
+            $jsonSchema: {
+              bsonType: "string",
+              required: ["title", "text", "creator", "comments"],
+              properties: {
+                title: {
+                    bsonType: "string",
+                    description: "must be a string and is required"
+                },
+                text: {
+                    bsonType: "string",
+                    description: "must be a string and is required"
+                },
+                creator: {
+                    bsonType: "objectId",
+                    description: "must be a an objectId and is required"
+                },
+                comments: {
+                    bsonType: "array",
+                    description: "must be a array and is required",
+                    items: {
+                        bsonType: "object",
+                        required: ["text", "author"],
+                        properties: {
+                            text: {
+                                bsonType: "string",
+                                description: "must be string and is required"
+                            },
+                            author: {
+                                bsonType: "objectId",
+                                description: "must be a an objectId and is required"
+                            }
+                        }
+                    }
+                },
+              }
+            }
+          }
+        })
+
+    _________________________________________________________________________________________________________
+
+    iv) Array Query:
+    ----------------
+
+    Link: https://chatgpt.com/share/67063fe6-0a3c-8006-b073-bc771bb2e15f
+
+    -> $size Operator:
+       ----------------
+
+        -> The $size operator in MongoDB is used to match documents where an array field has a specified number of elements. Let’s go through some examples with inputs and expected outputs.
+
+        -> $size helps match documents based on the exact number of elements in an array.
+
+        -> It works with arrays of numbers, strings, objects, mixed types, and even nested arrays.
+
+        -> If the field is not an array, $size does not match that document.
+
+        -> db.persons.find({hobbies: {$size: 2}}).pretty()      -> It will find the hobbies array where size of the array is 3.
+
+        -> db.students.find({ subjects: { $size: 3 } })     -> The query returns the document where the subjects array contains exactly 3 elements.
+
+        -> db.students.find({ hobbies: { $size: 0 } })      -> The query returns documents where the hobbies array is empty (contains exactly 0 elements).
+
+        -> db.students.find({ scores: { $size: 4 } })       -> The query returns the document where the scores array has exactly 4 elements.
+
+        -> db.students.find({ grades: { $size: 2 } })       -> The query returns the document where the grades array contains exactly 2 sub-arrays.
+
+        -> db.students.find({ details: { $size: 3 } })      -> The query returns the document where the details array contains exactly 3 elements, even though they are of mixed types (number, string, boolean).
+
+        -> db.students.find({ address: { $size: 2 } })      -> This query only returns documents where address is an array with exactly 2 elements. Documents where address is a string or empty array are excluded.
+
+        -> db.students.find({ grades: { $size: 2 } })       -> The query returns the document where the grades array contains exactly 2 objects.
+
+
+    -> $all Operator:
+       --------------
+
+        -> The $all operator in MongoDB allows you to query for documents where an array contains all the specified elements. Let’s go through a few examples with inputs and expected outputs to better understand how it works.
+
+        -> $all ensures that all specified elements must be present in the array (but the order of the elements does not matter).
+
+        -> It can be used with numbers, strings, mixed types, empty arrays, and even nested arrays.
+
+        ->  db.persons.find({hobbies: ["cooking","sports"]}).pretty()   -> It will return nothing because the order of the hobbies in the DB is sports, cooking.
+
+            db.persons.find({hobbies: {$all: ["cooking","sports"]}}).pretty()   -> It will return all documents where hobbies array has cooking, sports even though not in order.
+
+        -> db.students.find({ subjects: { $all: ["Math", "Science"] } })    ->  The result includes documents where the subjects array contains both "Math" and "Science". The order of elements in the array does not matter.
+
+        -> db.students.find({ scores: { $all: [85, 88] } })     -> Both John and Doe have 85 and 88 in their scores array, so they are included in the result.
+
+        -> db.students.find({ details: { $all: [85, "Grade A"] } })     -> The result includes documents where both 85 and "Grade A" are present in the details array. The types must match exactly.
+
+        -> db.students.find({ hobbies: { $all: [] } })      -> This query finds documents where the hobbies array is empty. An empty $all matches only empty arrays.
+
+        -> db.students.find({ grades: { $all: [[85, 90]] } })       -> The query looks for documents where the grades array contains the exact sub-array [85, 90].
+
+
+    -> $elemMatch Operator:
+       --------------------
+
+        -> The $elemMatch operator in MongoDB is used to match documents that contain an array field with at least one element that satisfies all of the specified criteria. Let’s go through some examples with input data and their expected outputs.
+
+        -> $elemMatch allows for complex queries on array fields, specifying multiple conditions that an array element must meet.
+
+        -> It can be used with nested objects, arrays of numbers, and even arrays of arrays.
+
+        -> It’s particularly useful for filtering documents based on specific criteria for elements within an array.
+
+        -> db.persons.find({hobbies: {$elemMatch: {title: "sports", frequency: {$gt: 2 }}}}).pretty()   -> It will return the document where hobbies array must have 
+                                                                                                            title: sports and frequency should be greater than 2.
+
+        -> db.students.find({
+              scores: {
+                $elemMatch: { subject: "Math", score: { $gte: 85 } }
+              }
+            })
+
+            The query returns documents where at least one element in the scores array matches both conditions: the subject must be "Math", and the score must be at least 85.
+
+
+        -> db.customers.find({
+              products: {
+                $elemMatch: { name: "Laptop", price: { $lt: 1100 } }
+              }
+            })
+
+            The query returns documents where the products array contains an element with "name": "Laptop" and "price": { $lt: 1100 }.
+
+
+        -> db.people.find({
+              numbers: {
+                $elemMatch: { $gt: 15, $lt: 30 }
+              }
+            })
+
+            The query returns documents where the numbers array contains at least one number that satisfies both conditions: greater than 15 and less than 30.
+
+
+        -> db.customers.find({
+              orders: {
+                $elemMatch: { status: "pending", items: { $gt: 2 } }
+              }
+            })
+
+            The query returns documents where at least one order in the orders array matches both conditions: "status": "pending" and "items": { $gt: 2 }.
+
+
+        -> db.people.find({
+              cars: {
+                $elemMatch: { make: "Toyota", color: "red", year: { $gt: 2015 } }
+              }
+            })
+
+            The query returns documents where the cars array contains a car with "make": "Toyota", "color": "red", and "year": { $gt: 2015 }.
+
+
+        -> db.people.find({
+              matrix: {
+                $elemMatch: { $gt: 10 }
+              }
+            })
+
+            The query returns documents where at least one element in a sub-array of matrix is greater than 10.
+
+    _________________________________________________________________________________________________________
+
+
+    v) Cursors
+    ----------
+
+    -> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
